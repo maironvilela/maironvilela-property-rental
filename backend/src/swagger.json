@@ -1,0 +1,91 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Property Rental",
+    "version": "1.0.0",
+    "contact": {
+      "email": "teste@email.com"
+    }
+  },
+  "paths": {
+    "/property ": {
+      "get": {
+        "tags": [
+          "Property"
+        ],
+        "summary": "Get a list of property",
+        "description": "Get a list of property",
+        "parameters": [
+          {
+            "name": "size",
+            "in": "query",
+            "description": "number of records you want returned",
+            "requery": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page you want to be returned",
+            "requery": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "return list of category",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/get_all_property"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "get_all_property": {
+      "type": "object",
+      "properties": {
+        "property": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "summary": {
+          "type": "object",
+          "properties": {
+            "totalPages": {
+              "type": "number"
+            },
+            "size": {
+              "type": "number"
+            },
+            "pageNumber": {
+              "type": "number"
+            },
+            "isFirstPage": {
+              "type": "boolean"
+            },
+            "isLastPage": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    }
+  }
+}
