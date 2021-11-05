@@ -11,7 +11,7 @@
     "/property ": {
       "get": {
         "tags": [
-          "Property"
+          "Propertys"
         ],
         "summary": "Get a list of property",
         "description": "Get a list of property",

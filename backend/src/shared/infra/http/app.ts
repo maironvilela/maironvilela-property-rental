@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(cors());
 
 app.get('/', async (request, response) => {
-  return response.json({ message: 'Property Rental' });
+  return response.json({ message: ' Rental' });
 });
 
 
