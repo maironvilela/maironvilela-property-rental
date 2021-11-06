@@ -1,3 +1,4 @@
 node_modules
 Tasks.md
 .env
+yarn-error.log

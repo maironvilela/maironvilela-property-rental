@@ -20,6 +20,13 @@ export interface IPropertiesRepository {
   findAll(data: FindAllPropertiesDTO): Promise<Property[]>;
 
 
-  save(properties: Property): Promise<Property>
+  /**
+ * @description Função que salva o registro de um imóvel no banco de dados
+ * @param property informações do imóvel que deseja salvar
+  * @returns retorna as informações do imóvel salvo
+ * @Example const result = await this.propertiesRepository.save(property);
+
+ */
+  save(property: Property): Promise<Property>
 
 }

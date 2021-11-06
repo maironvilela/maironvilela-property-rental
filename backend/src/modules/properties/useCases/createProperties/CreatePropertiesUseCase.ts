@@ -1,15 +1,7 @@
-/*
-  Necessário refatorar nome da classe
-*/
 import { Property } from '../../infra/mysql/entities/Property';
 import { IPropertiesRepository } from '../../repositories/IPropertiesRepository';
 
-
-interface IRequest {
-  page: number;
-  size: number;
-}
-export class GetAllPropertiesUseCase {
+export class CreatePropertiesUseCase {
 
   private propertiesRepository: IPropertiesRepository;
 
@@ -19,8 +11,10 @@ export class GetAllPropertiesUseCase {
 
   }
 
-  async execute({ page = 1, size = 10 }: IRequest): Promise<Property[]> {
+  async execute(property: Property): Promise<Property> {
 
-    return await this.propertiesRepository.findAll({ page, size });
+    const result = await this.propertiesRepository.save(property);
+
+    return result;
   }
 }

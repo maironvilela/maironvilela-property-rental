@@ -1,23 +1,15 @@
-import { v4 as uuidv4 } from 'uuid';
 
-
+/**
+   * @summary Classe quie representa o modelo de dados de um imóvel no banco de dados
+   * @version: 1.0
+*/
 export class Property {
 
   id?: string;
-  price: number;
-  isLocation: boolean;
-  isSale: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  price!: number;
+  isLocation!: boolean;
+  isSale!: boolean;
+  createdAt?: Date;
+  updatedAt?: Date;
 
-  constructor(id: string, price: number, isLocation: boolean, isSale: boolean) {
-
-    this.id = uuidv4();
-    this.price = price;
-    this.isLocation = isLocation;
-    this.isSale = isSale;
-    this.createdAt = new Date();
-    this.updatedAt = new Date();
-
-  }
 }
