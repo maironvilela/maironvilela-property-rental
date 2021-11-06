@@ -2,7 +2,7 @@
 
 import { IPropertiesRepository } from '../../repositories/IPropertiesRepository';
 import { PropertiesRepositoryFake } from '../../repositories/fake/PropertiesRepositoryFake';
-import { GetAllPropertiesUseCase } from '../getAllProperties/GetAllPropertiesUseCase';
+import { GetAllPropertiesUseCase } from './ListPropertiesUseCase';
 import { getPropertyInTest } from '../createProperties/CreateProperties.spec';
 
 

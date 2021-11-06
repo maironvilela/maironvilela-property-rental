@@ -5,16 +5,16 @@
 
 import { Router } from 'express';
 import { CreatePropertiesController } from '../../../../modules/properties/useCases/createProperties/CreatePropertiesController';
-import { GetAllPropertiesController } from '../../../../modules/properties/useCases/getAllProperties/GetAllPropertiesController';
+import { ListPropertiesController } from '../../../../modules/properties/useCases/getAllProperties/ListPropertiesController';
 
-const getAllPropertiesController = new GetAllPropertiesController();
+const listPropertiesController = new ListPropertiesController();
 
 const createPropertiesController = new CreatePropertiesController();
 
 
 export const propertiesRoutes = Router();
 
-propertiesRoutes.get('/', getAllPropertiesController.handle);
+propertiesRoutes.get('/', listPropertiesController.handle);
 
 propertiesRoutes.post('/', createPropertiesController.handle);
 

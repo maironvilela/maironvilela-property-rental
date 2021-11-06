@@ -1,16 +1,14 @@
 import 'dotenv/config';
 import 'reflect-metadata';
 
-import express, {
-  NextFunction,
-  Request, Response
-} from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
 import cors from 'cors';
 import swaggerUi from 'swagger-ui-express';
 import swaggerFile from '../../../swagger.json';
 import AppError from '../../error/AppError';
 import { router } from './routes';
+import '../../container';
 
 
 

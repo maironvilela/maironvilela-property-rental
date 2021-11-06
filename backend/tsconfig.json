@@ -5,6 +5,7 @@
     "emitDecoratorMetadata": true,
     "module": "commonjs",
     "rootDir": "./src",
+    "baseUrl": "./src",
     "resolveJsonModule": true,
     "outDir": "./dist",
     "removeComments": true,
@@ -12,6 +13,14 @@
     "forceConsistentCasingInFileNames": true, /* Ensure that casing is correct in imports. */
     "strict": true,
     "skipLibCheck": true,
+    "paths": {
+      "@modules/*": [
+        "./modules/*"
+      ],
+      "@shared/*": [
+        "./shared/*"
+      ]
+    }
   },
   "include": [
     "**/*.ts",
@@ -19,5 +28,5 @@
   ],
   "exclude": [
     "node_modules",
-  ],
+  ]
 }
