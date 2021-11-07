@@ -1,13 +1,15 @@
 
-###
-
+### Pesquisar todos os imoveis
 http://localhost:3333/api/properties
 
 
-###
+### Salvar um imovel
 POST http://localhost:3333/api/properties HTTP/1.1
 content-type: application/json
 
 {
-  "id": "123456"
+  "description": "Aparatmento de frente para o mar",
+  "price": 600,
+  "isLocation": true,
+  "isSale": true
 }
