@@ -9,6 +9,7 @@ import { Property } from '../../infra/mysql/entities/Property';
 import { IPropertiesRepository } from '../../repositories/IPropertiesRepository';
 import { PropertiesRepositoryFake } from '../../repositories/fake/PropertiesRepositoryFake';
 import { CreatePropertiesUseCase } from './CreatePropertiesUseCase';
+import { Specification } from '@modules/properties/infra/mysql/entities/Specification';
 
 
 /**
@@ -40,6 +41,7 @@ describe('Create Properties', () => {
     expect(result).toHaveProperty('id');
     expect(result).toHaveProperty('created_at');
     expect(result).toHaveProperty('updated_at');
+    expect(result.specifications.length).toEqual(5);
 
   });
 
@@ -50,11 +52,22 @@ describe('Create Properties', () => {
 */
 export const getPropertyInTest = () => {
   const property = new Property();
+  const specifications: Specification[] = [];
+
+  for (let i = 0; i < 5; i++) {
+
+    specifications.push({
+      name: faker.lorem.word(),
+      description: faker.lorem.paragraph()
+    });
+
+  }
 
   property.description = faker.lorem.paragraph();
   property.price = faker.datatype.number();
   property.isSale = faker.datatype.boolean();
   property.isLocation = faker.datatype.boolean();
+  property.specifications = specifications;
 
 
   return property;

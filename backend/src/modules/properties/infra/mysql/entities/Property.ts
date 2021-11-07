@@ -4,7 +4,8 @@
 */
 
 
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Specification } from './Specification';
 
 
 @Entity('properties')
@@ -17,6 +18,14 @@ export class Property {
 
   @Column()
   price: number;
+
+  @ManyToMany(() => Specification, { cascade: true })
+  @JoinTable({
+    name: 'specifications_properties',
+    joinColumns: [{ name: 'property_id' }],
+    inverseJoinColumns: [{ name: 'specification_id' }]
+  })
+  specifications: Specification[];
 
   @Column({ name: 'is_location' })
   isLocation: boolean;

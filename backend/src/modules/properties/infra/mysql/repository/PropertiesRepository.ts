@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { CreatePropertyDTO } from '@modules/properties/dtos/CreatePropertyDTO';
 import { getRepository, Repository } from 'typeorm';
 
 
@@ -18,7 +19,6 @@ export class PropertiesRepository implements IPropertiesRepository {
   }
 
 
-  //Alterar nome da função
   async findAll({ page, size }: FindAllPropertiesDTO): Promise<Property[]> {
 
     const properties = await this.repository.find();
@@ -26,10 +26,10 @@ export class PropertiesRepository implements IPropertiesRepository {
   }
 
 
-  async save({ price, isSale, isLocation, description }: Property): Promise<Property> {
+  async save({ price, isSale, isLocation, specifications, description }: CreatePropertyDTO): Promise<Property> {
 
     const property = this.repository.create({
-      price, isSale, isLocation, description
+      price, isSale, isLocation, specifications, description
     });
 
     const propertySave = await this.repository.save(property);

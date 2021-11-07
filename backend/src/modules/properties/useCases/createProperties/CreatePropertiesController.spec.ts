@@ -22,7 +22,7 @@ describe('Create Properties Controller', () => {
 
   afterAll(async () => {
     await connection.dropDatabase();
-    await connection.close();
+    //await connection.close();
   });
 
   /**
@@ -36,21 +36,35 @@ describe('Create Properties Controller', () => {
       description: 'Casa de frente para o mar',
       price: 600,
       isLocation: true,
-      isSale: true
+      isSale: true,
+      specifications: [
+        {
+          name: 'Quartos',
+          description: '4 Quartos',
+        },
+        {
+          name: 'area',
+          description: '300',
+        }
+      ]
 
     });
+
+    console.log(response.body);
 
 
     expect(response.status).toBe(200);
     expect(response.body).toHaveProperty('id');
     expect(response.body).toHaveProperty('created_at');
     expect(response.body).toHaveProperty('updated_at');
+    expect(response.body).toHaveProperty('specifications');
+    expect(response.body.specifications.length).toEqual(2);
 
   });
 
   /**
-     * @description Valida a exceção caso nao for informado a descrição do imóvel
-  **/
+ * @description Valida a exceção caso nao for informado a descrição do imóvel
+**/
   it('should not be able to create a new property without the description property', async () => {
 
 
@@ -76,8 +90,8 @@ describe('Create Properties Controller', () => {
   });
 
   /**
-     * @description Valida a exceção caso nao for informado o valor do imóvel
-  **/
+ * @description Valida a exceção caso nao for informado o valor do imóvel
+**/
   it('should not be able to create a new property without the price property', async () => {
 
 
@@ -101,8 +115,8 @@ describe('Create Properties Controller', () => {
 
 
   /**
-     * @description Valida a exceção caso não for informado a disponibilidade para venda do imóvel
-  **/
+ * @description Valida a exceção caso não for informado a disponibilidade para venda do imóvel
+**/
   it('should not be able to create a new property without the isSale property', async () => {
 
 
@@ -127,8 +141,8 @@ describe('Create Properties Controller', () => {
 
 
   /**
-     * @description Valida a exceção caso não for informado a disponibilidade para locação do imóvel
-  **/
+ * @description Valida a exceção caso não for informado a disponibilidade para locação do imóvel
+**/
   it('should not be able to create a new property without the isLocation property', async () => {
 
 

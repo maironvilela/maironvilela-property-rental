@@ -9,7 +9,13 @@ content-type: application/json
   "description": "Aparatmento de frente para o mar",
   "price": 600,
   "isLocation": true,
-  "isSale": true
+  "isSale": true,
+  "specifications:"[
+    {
+      "name":"especificação 01",
+      "description": "descrição 01"
+    }
+  ]
 }
 
 

@@ -12,11 +12,10 @@ import { IPropertiesRepository } from '../../repositories/IPropertiesRepository'
 @injectable()
 export class CreatePropertiesUseCase {
 
-
   constructor(@inject('PropertiesRepository') private propertiesRepository: IPropertiesRepository) { }
 
   /**
-      * @description Função recebe uma instância de Property e repassa para o Repositorio para realizar a persistência das informações
+      * @description Função recebe uma instância de Property e repassa para o Repositório para realizar a persistência das informações
       * @param property instância de Property recebida pelo Controller
       * @returns retorna o recurso do imóvel criado
       * @Example const result = await createPropertiesUseCase.execute(property);
