@@ -1,7 +1,9 @@
 {
     "cSpell.words": [
         "openapi",
-        "tsyringe"
+        "tinyint",
+        "tsyringe",
+        "typeorm"
     ],
     "cSpell.language": "en,pt,pt-PT"
 }

@@ -1,9 +1,9 @@
-
+import 'reflect-metadata';
 
 import { IPropertiesRepository } from '../../repositories/IPropertiesRepository';
 import { PropertiesRepositoryFake } from '../../repositories/fake/PropertiesRepositoryFake';
-import { GetAllPropertiesUseCase } from './ListPropertiesUseCase';
-import { getPropertyInTest } from '../createProperties/CreateProperties.spec';
+import { ListPropertiesUseCase } from './ListPropertiesUseCase';
+import { getPropertyInTest } from '../createProperties/CreatePropertiesUseCase.spec';
 
 
 /**
@@ -12,13 +12,13 @@ import { getPropertyInTest } from '../createProperties/CreateProperties.spec';
 describe('List Properties', () => {
 
   let propertiesRepository: IPropertiesRepository;
-  let getAllPropertiesUseCase: GetAllPropertiesUseCase;
+  let listPropertiesUseCase: ListPropertiesUseCase;
 
 
 
   beforeEach(() => {
     propertiesRepository = new PropertiesRepositoryFake;
-    getAllPropertiesUseCase = new GetAllPropertiesUseCase(propertiesRepository);
+    listPropertiesUseCase = new ListPropertiesUseCase(propertiesRepository);
   });
 
 
@@ -35,7 +35,7 @@ describe('List Properties', () => {
       await propertiesRepository.save(getPropertyInTest());
     }
 
-    const result = await getAllPropertiesUseCase.execute({ page, size });
+    const result = await listPropertiesUseCase.execute({ page, size });
 
     // Valida a quantidade de retorno da lista que deve ser o valor definido na constante "size"
     expect(result.length).toEqual(size);

@@ -1,19 +1,28 @@
+/**
+   * @summary Controller responsável para listagem dos imóveis
+**/
+
+
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-import { GetAllPropertiesUseCase } from './ListPropertiesUseCase';
+
+import { ListPropertiesUseCase } from './ListPropertiesUseCase';
 
 export class ListPropertiesController {
 
   async handle(request: Request, response: Response): Promise<Response> {
 
-    const { size, page } = request.query;
-    console.log('#### GetAllPropertiesController ### ');
+
+    const { size = 5, page = 1 } = request.query;
 
 
-    const getAllPropertiesUseCase = container.resolve(GetAllPropertiesUseCase);
+    const listPropertiesUseCase = container.resolve(ListPropertiesUseCase);
 
-    await getAllPropertiesUseCase.execute({ page: Number(page), size: Number(size) });
+    console.log('### ListPropertiesController ###');
 
-    return response.status(200).json({ size, page });
+
+    const properties = await listPropertiesUseCase.execute({ page: Number(page), size: Number(size) });
+
+    return response.status(200).json({ properties });
   }
 }

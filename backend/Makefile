@@ -14,3 +14,13 @@ down:
 
 logs:
 	docker-compose logs -f
+
+.PHONY: typeorm
+
+ run:
+	yarn typeorm migration:run
+
+ revert:
+	yarn typeorm migration:revert
+
+

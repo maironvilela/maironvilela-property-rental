@@ -1,7 +1,7 @@
 /**
    * @summary Testes unitários para validar as regras de negocio para persistir um imóvel
 */
-
+import 'reflect-metadata';
 import faker from 'faker';
 
 
@@ -38,24 +38,24 @@ describe('Create Properties', () => {
 
 
     expect(result).toHaveProperty('id');
-    expect(result).toHaveProperty('createdAt');
-    expect(result).toHaveProperty('updatedAt');
+    expect(result).toHaveProperty('created_at');
+    expect(result).toHaveProperty('updated_at');
 
   });
 
 });
 
-
-
 /**
-  * @description Retorna um imóvel com dados fictícios utilizando a biblioteca faker. Constante e exportada para utilização nos demais testes de que necessita da criação de um imóvel
+  * @description Retorna um imóvel com dados fictícios utilizando a biblioteca faker. Constante é exportada para utilização nos demais testes de que necessita da criação de uma instância de imóvel
 */
 export const getPropertyInTest = () => {
   const property = new Property();
 
+  property.description = faker.lorem.paragraph();
   property.price = faker.datatype.number();
   property.isSale = faker.datatype.boolean();
   property.isLocation = faker.datatype.boolean();
+
 
   return property;
 };

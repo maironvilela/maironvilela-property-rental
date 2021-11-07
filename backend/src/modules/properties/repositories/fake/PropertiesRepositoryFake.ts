@@ -3,6 +3,8 @@
    * @version: 1.0
 */
 
+import faker from 'faker';
+
 import { v4 as uuidv4 } from 'uuid';
 
 import { FindAllPropertiesDTO } from '../../dtos/FindAllPropertiesDTO';
@@ -17,8 +19,8 @@ export class PropertiesRepositoryFake implements IPropertiesRepository {
   async save(property: Property): Promise<Property> {
 
     property.id = uuidv4();
-    property.createdAt = new Date();
-    property.updatedAt = new Date();
+    property.created_at = new Date(faker.date.past(10));
+    property.updated_at = new Date(faker.date.future(10));
 
     const nextIndice = this.properties.push(property);
 
