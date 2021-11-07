@@ -1,0 +1,60 @@
+## Summary: Cliente HTTP extenção Rest Client. Permite o envio de uma solicitação HTTP e visualizar a resposta
+
+
+### Salva um imóvel
+ POST http://localhost:3333/api/properties HTTP/1.1
+content-type: application/json
+
+{
+  "description": "Aparatmento de frente para o mar",
+  "price": 600,
+  "isLocation": true,
+  "isSale": true
+}
+
+
+
+### Envio da requisição sem a propriedade description. Tem como resposta um erro de validação
+ POST http://localhost:3333/api/properties HTTP/1.1
+content-type: application/json
+
+{
+  "price": 600,
+  "isLocation": true,
+  "isSale": true
+}
+
+
+### Envio da requisição sem a propriedade price. Tem como resposta um erro de validação
+ POST http://localhost:3333/api/properties HTTP/1.1
+content-type: application/json
+
+{
+  "description": "Casa de Praia",
+  "isLocation": true,
+  "isSale": true
+}
+
+
+### Envio da requisição sem a propriedade isLocation. Tem como resposta um erro de validação
+ POST http://localhost:3333/api/properties HTTP/1.1
+content-type: application/json
+
+{
+  "description": "Casa de Praia",
+  "price": 600,
+  "isSale": true
+}
+
+
+### Envio da requisição sem a propriedade isSale. Tem como resposta um erro de validação
+ POST http://localhost:3333/api/properties HTTP/1.1
+content-type: application/json
+
+{
+  "description": "Casa de Praia",
+  "price": 600,
+  "isLocation": true
+}
+
+

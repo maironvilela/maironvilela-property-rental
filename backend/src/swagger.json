@@ -11,7 +11,7 @@
     "/property ": {
       "get": {
         "tags": [
-          "Propertys"
+          "Properties"
         ],
         "summary": "Get a list of property",
         "description": "Get a list of property",
@@ -42,6 +42,64 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/definitions/get_all_property"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/server-error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Property"
+        ],
+        "summary": "Create Property",
+        "description": "Create a new Property",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/create_property-request"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Property created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/create_property-response-201"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/create_property-response-400"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/server-error"
                 }
               }
             }
@@ -84,6 +142,78 @@
               "type": "boolean"
             }
           }
+        }
+      }
+    },
+    "create_property-request": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number"
+        },
+        "isLocation": {
+          "type": "boolean"
+        },
+        "isSale": {
+          "type": "boolean"
+        }
+      }
+    },
+    "create_property-response-201": {
+      "properties": {
+        "id": {
+          "type": "number"
+        },
+        "description": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number"
+        },
+        "isLocation": {
+          "type": "boolean"
+        },
+        "isSale": {
+          "type": "boolean"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "create_property-response-400": {
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "msg": {
+                "type": "string"
+              },
+              "param": {
+                "type": "string"
+              },
+              "location": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "server-error": {
+      "properties": {
+        "error": {
+          "type": "string"
         }
       }
     }
