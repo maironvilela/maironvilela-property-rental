@@ -1,5 +1,5 @@
 /**
-   * @summary Testes de integração para validar as chamadas a API do modulo Properties para a listagem dos registros
+   * @summary Testes de integração para validar as chamadas a API do modulo Properties para a listagem dos imóveis
 */
 
 import faker from 'faker';
@@ -49,9 +49,6 @@ describe('List Properties Controller', () => {
   it('should be able to return a listing of properties', async () => {
 
     const response = await request(app).get('/api/properties');
-
-    console.log(response.body);
-
 
     expect(response.body.properties.length).toEqual(20);
 

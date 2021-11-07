@@ -5,7 +5,7 @@
 
 import { Router } from 'express';
 import { CreatePropertiesController } from '../../../../modules/properties/useCases/createProperties/CreatePropertiesController';
-import { ListPropertiesController } from '../../../../modules/properties/useCases/getAllProperties/ListPropertiesController';
+import { ListPropertiesController } from '../../../../modules/properties/useCases/ListProperties/ListPropertiesController';
 
 const listPropertiesController = new ListPropertiesController();
 

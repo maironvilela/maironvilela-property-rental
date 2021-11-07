@@ -1,3 +1,8 @@
+/**
+   * @summary Testes de integração para validar as chamadas a API do modulo Properties para a listagem dos registros
+   *
+*/
+
 import 'reflect-metadata';
 
 import { IPropertiesRepository } from '../../repositories/IPropertiesRepository';

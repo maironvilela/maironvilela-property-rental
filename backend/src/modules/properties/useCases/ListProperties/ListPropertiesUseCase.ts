@@ -19,9 +19,6 @@ export class ListPropertiesUseCase {
 
   async execute({ page = 1, size = 10 }: IRequest): Promise<Property[]> {
 
-
-    console.log('ListPropertiesUseCase');
-
     const properties = await this.propertiesRepository.findAll({ page, size });
 
     return properties;
