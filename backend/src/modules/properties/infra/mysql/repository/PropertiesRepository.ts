@@ -26,10 +26,10 @@ export class PropertiesRepository implements IPropertiesRepository {
   }
 
 
-  async save({ price, isSale, isLocation, specifications, description }: CreatePropertyDTO): Promise<Property> {
+  async save({ price, isSale, isLocation, specifications, description, propertyType, address }: CreatePropertyDTO): Promise<Property> {
 
     const property = this.repository.create({
-      price, isSale, isLocation, specifications, description
+      price, isSale, isLocation, specifications, description, propertyType, address
     });
 
     const propertySave = await this.repository.save(property);

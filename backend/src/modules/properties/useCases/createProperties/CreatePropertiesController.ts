@@ -28,15 +28,13 @@ export class CreatePropertiesController {
     }
 
 
-    const { description, price, isLocation, isSale, specifications } = request.body;
-
+    const { description, price, isLocation, isSale, specifications, propertyType, address } = request.body;
 
 
     const property = {
-      description, price, isLocation, isSale, specifications
+      description, price, isLocation, isSale, specifications, propertyType, address
     };
 
-    console.log(property);
 
     const createPropertiesUseCase = container.resolve(CreatePropertiesUseCase);
 

@@ -1,11 +1,14 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreateProperties1636224710635 implements MigrationInterface {
+export class CreateAddress1636328415426 implements MigrationInterface {
 
   public async up(queryRunner: QueryRunner): Promise<void> {
+
     await queryRunner.createTable(
+
+
       new Table({
-        name: 'properties',
+        name: 'address',
         columns: [
           {
             name: 'id',
@@ -15,27 +18,42 @@ export class CreateProperties1636224710635 implements MigrationInterface {
             isGenerated: true
           },
           {
-            name: 'description',
-            type: 'text',
+            name: 'zip_code',
+            type: 'varchar',
             isNullable: false,
           },
 
           {
-            name: 'price',
-            type: 'double',
+            name: 'street_address',
+            type: 'varchar',
             isNullable: false,
           },
           {
-            name: 'is_sale',
-            type: 'tinyint(1)',
+            name: 'number',
+            type: 'int',
             isNullable: false,
           },
           {
-            name: 'is_location',
-            type: 'tinyint(1)',
+            name: 'complement',
+            type: 'varchar',
+            isNullable: false,
+          },
+          {
+            name: 'district',
+            type: 'varchar',
+            isNullable: false,
+          },
+          {
+            name: 'city',
+            type: 'varchar',
             isNullable: false,
           },
 
+          {
+            name: 'state',
+            type: 'varchar',
+            isNullable: false,
+          },
           {
             name: 'created_at',
             type: 'timestamp',
@@ -45,15 +63,14 @@ export class CreateProperties1636224710635 implements MigrationInterface {
             name: 'updated_at',
             type: 'timestamp',
             default: 'now()',
-          },
-        ],
-      }),
+          }
+        ]
+      })
     );
-
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('properties');
+    await queryRunner.dropTable('address');
 
   }
 

@@ -8,6 +8,7 @@ import { Connection } from 'typeorm';
 
 import { app } from '../../../../shared/infra/http/app';
 import createConnection from '@shared/infra/typeorm';
+import { getPropertyInTest } from './CreatePropertiesUseCase.spec';
 
 
 let connection: Connection;
@@ -22,7 +23,7 @@ describe('Create Properties Controller', () => {
 
   afterAll(async () => {
     await connection.dropDatabase();
-    //await connection.close();
+    await connection.close();
   });
 
   /**
@@ -30,35 +31,20 @@ describe('Create Properties Controller', () => {
    */
   it('should be able to create a new properties', async () => {
 
+    const property = getPropertyInTest();
 
-    const response = await request(app).post('/api/properties').send({
 
-      description: 'Casa de frente para o mar',
-      price: 600,
-      isLocation: true,
-      isSale: true,
-      specifications: [
-        {
-          name: 'Quartos',
-          description: '4 Quartos',
-        },
-        {
-          name: 'area',
-          description: '300',
-        }
-      ]
 
-    });
-
-    console.log(response.body);
-
+    const response = await request(app).post('/api/properties').send(property);
 
     expect(response.status).toBe(200);
     expect(response.body).toHaveProperty('id');
+    expect(response.body).toHaveProperty('propertyType');
     expect(response.body).toHaveProperty('created_at');
     expect(response.body).toHaveProperty('updated_at');
     expect(response.body).toHaveProperty('specifications');
-    expect(response.body.specifications.length).toEqual(2);
+    expect(response.body.specifications.length).toEqual(5);
+    expect(response.body).toHaveProperty('address');
 
   });
 

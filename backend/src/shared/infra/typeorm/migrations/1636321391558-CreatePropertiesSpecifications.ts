@@ -37,7 +37,7 @@ export class CreatePropertiesSpecifications1636321391558 implements MigrationInt
     await queryRunner.createForeignKey(
       'specifications_properties',
       new TableForeignKey({
-        name: 'FKSpecificationsPProperties',
+        name: 'FK_Specification_Properties',
         referencedTableName: 'specifications',
         referencedColumnNames: ['id'],
         columnNames: ['specification_id'],
@@ -49,7 +49,7 @@ export class CreatePropertiesSpecifications1636321391558 implements MigrationInt
     await queryRunner.createForeignKey(
       'specifications_properties',
       new TableForeignKey({
-        name: 'FKPropertiesSpecifications',
+        name: 'FK_Properties_Specifications',
         referencedTableName: 'properties',
         referencedColumnNames: ['id'],
         columnNames: ['property_id'],
@@ -62,12 +62,12 @@ export class CreatePropertiesSpecifications1636321391558 implements MigrationInt
   public async down(queryRunner: QueryRunner): Promise<void> {
 
     await queryRunner.dropForeignKey(
-      'properties_specifications',
+      'specifications_properties',
       'FK_Specification_Properties'
     );
 
     await queryRunner.dropForeignKey(
-      'properties_specifications',
+      'specifications_properties',
       'FK_Properties_Specification'
     );
   }

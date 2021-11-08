@@ -21,16 +21,32 @@ describe('List Properties Controller', () => {
 
 
     // Realiza a criações de vários registros no banco de dados de teste
+
+    await connection.query(`
+    INSERT INTO address(zip_code,street_address,number,complement,district,city,state)
+    VALUES(
+      '30514000',
+     'Avenida Padre Jose Maurício',
+      250,
+      'Casa A',
+      'Vista Alegre',
+      'Belo Horizonte',
+      'MG')`
+    );
+
+
+
     for (let i = 1; i <= 20; i++) {
       await connection.query(`
-      INSERT INTO properties(description,price,is_sale,is_location)
+      INSERT INTO properties(description, price, is_sale, is_location, property_type, address_id)
       VALUES(
-        '${faker.lorem.sentence()}',
-        ${faker.finance.amount()},
-        ${faker.datatype.boolean()},
-        ${faker.datatype.boolean()}
-      )
-        `);
+      '${faker.lorem.sentence()}',
+      ${faker.finance.amount()},
+      ${faker.datatype.boolean()},
+      ${faker.datatype.boolean()},
+      'casa',
+        '1')`
+      );
 
     }
 

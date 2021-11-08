@@ -4,7 +4,8 @@
 */
 
 
-import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Address } from './Address';
 import { Specification } from './Specification';
 
 
@@ -16,8 +17,17 @@ export class Property {
   @Column()
   description: string;
 
+  @Column({ name: 'property_type' })
+  propertyType: string;
+
+
   @Column()
   price: number;
+
+  @OneToOne(() => Address, { cascade: true })
+  @JoinColumn({ name: 'address_id' })
+  address: Address;
+
 
   @ManyToMany(() => Specification, { cascade: true })
   @JoinTable({
@@ -26,6 +36,7 @@ export class Property {
     inverseJoinColumns: [{ name: 'specification_id' }]
   })
   specifications: Specification[];
+
 
   @Column({ name: 'is_location' })
   isLocation: boolean;

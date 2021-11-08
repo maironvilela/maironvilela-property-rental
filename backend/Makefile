@@ -23,4 +23,12 @@ logs:
  revert:
 	yarn typeorm migration:revert
 
+.PHONY: typeorm
+
+ clean:
+	yarn jest --clearCache
+
+
+
+
 
