@@ -4,8 +4,9 @@
 */
 
 
-import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { Address } from './Address';
+import { PropertyImages } from './PropertyImages';
 import { Specification } from './Specification';
 
 
@@ -23,6 +24,11 @@ export class Property {
 
   @Column()
   price: number;
+
+  @OneToMany(() => PropertyImages, propertyImages => propertyImages.property, { cascade: true })
+  @JoinColumn({ name: 'address_id' })
+
+  propertyImages: PropertyImages[];
 
   @OneToOne(() => Address, { cascade: true })
   @JoinColumn({ name: 'address_id' })

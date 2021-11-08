@@ -16,7 +16,7 @@ export class CreateProperties1636224710635 implements MigrationInterface {
           },
           {
             name: 'description',
-            type: 'text',
+            type: 'varchar(500)',
             isNullable: false,
           },
 

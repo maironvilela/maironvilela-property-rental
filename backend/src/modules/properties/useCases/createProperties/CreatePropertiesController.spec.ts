@@ -33,8 +33,6 @@ describe('Create Properties Controller', () => {
 
     const property = getPropertyInTest();
 
-
-
     const response = await request(app).post('/api/properties').send(property);
 
     expect(response.status).toBe(200);
@@ -43,8 +41,11 @@ describe('Create Properties Controller', () => {
     expect(response.body).toHaveProperty('created_at');
     expect(response.body).toHaveProperty('updated_at');
     expect(response.body).toHaveProperty('specifications');
-    expect(response.body.specifications.length).toEqual(5);
     expect(response.body).toHaveProperty('address');
+    expect(response.body).toHaveProperty('propertyImages');
+    expect(response.body.propertyImages.length).toEqual(5);
+    expect(response.body.specifications.length).toEqual(5);
+
 
   });
 

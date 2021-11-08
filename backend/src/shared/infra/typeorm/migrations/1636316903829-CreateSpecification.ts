@@ -22,7 +22,7 @@ export class CreateSpecification1636316903829 implements MigrationInterface {
 
           {
             name: 'description',
-            type: 'varchar',
+            type: 'varchar(500)',
             isNullable: false,
           },
 

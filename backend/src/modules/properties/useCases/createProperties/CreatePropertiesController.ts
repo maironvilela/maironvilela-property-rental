@@ -28,11 +28,26 @@ export class CreatePropertiesController {
     }
 
 
-    const { description, price, isLocation, isSale, specifications, propertyType, address } = request.body;
+    const {
+      propertyImages,
+      description,
+      price,
+      isLocation,
+      isSale,
+      specifications,
+      propertyType,
+      address } = request.body;
 
 
     const property = {
-      description, price, isLocation, isSale, specifications, propertyType, address
+      description,
+      price,
+      isLocation,
+      isSale,
+      specifications,
+      propertyType,
+      address,
+      propertyImages
     };
 
 

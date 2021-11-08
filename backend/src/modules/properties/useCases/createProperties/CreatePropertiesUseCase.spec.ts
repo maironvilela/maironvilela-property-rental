@@ -11,6 +11,7 @@ import { PropertiesRepositoryFake } from '../../repositories/fake/PropertiesRepo
 import { CreatePropertiesUseCase } from './CreatePropertiesUseCase';
 import { Specification } from '@modules/properties/infra/mysql/entities/Specification';
 import { Address } from '@modules/properties/infra/mysql/entities/Address';
+import { PropertyImages } from '@modules/properties/infra/mysql/entities/PropertyImages';
 
 
 /**
@@ -21,14 +22,9 @@ describe('Create Properties', () => {
   let propertiesRepository: IPropertiesRepository;
   let createPropertiesUseCase: CreatePropertiesUseCase;
 
-
-
   beforeEach(() => {
-
     propertiesRepository = new PropertiesRepositoryFake;
     createPropertiesUseCase = new CreatePropertiesUseCase(propertiesRepository);
-
-
   });
 
   /**
@@ -37,6 +33,7 @@ describe('Create Properties', () => {
   it('should be able to create a new properties', async () => {
 
     const property = getPropertyInTest();
+
     const result = await createPropertiesUseCase.execute(property);
 
 
@@ -45,7 +42,10 @@ describe('Create Properties', () => {
     expect(result).toHaveProperty('address');
     expect(result).toHaveProperty('created_at');
     expect(result).toHaveProperty('updated_at');
+    expect(result).toHaveProperty('propertyImages');
     expect(result.specifications.length).toEqual(5);
+    expect(result.propertyImages.length).toEqual(5);
+
 
   });
 
@@ -60,11 +60,17 @@ export const getPropertyInTest = () => {
 
   const specifications: Specification[] = [];
 
+  const propertyImages: PropertyImages[] = [];
+
   for (let i = 0; i < 5; i++) {
 
     specifications.push({
       name: faker.lorem.word(),
       description: faker.lorem.paragraph()
+    });
+
+    propertyImages.push({
+      imageUrl: faker.image.imageUrl(),
     });
 
   }
@@ -77,13 +83,14 @@ export const getPropertyInTest = () => {
   address.city = faker.address.city();
   address.state = faker.address.state();
 
-  property.description = faker.lorem.word(3);
+  property.description = faker.lorem.sentence().substring(1, 100);
   property.price = faker.datatype.number();
   property.isSale = faker.datatype.boolean();
   property.isLocation = faker.datatype.boolean();
   property.specifications = specifications;
   property.propertyType = 'casa';
   property.address = address;
+  property.propertyImages = propertyImages;
 
   return property;
 };

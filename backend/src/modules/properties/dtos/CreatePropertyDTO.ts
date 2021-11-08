@@ -3,6 +3,7 @@
 */
 
 import { Address } from '../infra/mysql/entities/Address';
+import { PropertyImages } from '../infra/mysql/entities/PropertyImages';
 import { Specification } from '../infra/mysql/entities/Specification';
 
 export class CreatePropertyDTO {
@@ -14,5 +15,6 @@ export class CreatePropertyDTO {
   isSale: boolean;
   specifications: Specification[];
   address: Address;
+  propertyImages: PropertyImages[];
 
 }
