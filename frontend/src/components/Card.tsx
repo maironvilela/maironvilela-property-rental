@@ -1,67 +1,63 @@
-import { Box, Flex, Text, Button, Image } from "@chakra-ui/react";
-import { useBreakpointValue } from "@chakra-ui/react"
-import Link from 'next/link'
+import { Box, Flex, Text, Image } from '@chakra-ui/react';
+import Link from 'next/link';
 
-import { Modal } from './Modal';
+import { DetailsProperty } from '../components/DatailsProperty';
 
-
-
-type product = {
-  _id: string;
-  product_name: string
-  quantity: string
-  barcode: string;
-  brands: string;
-  categories: string;
-  code: string
-  packaging: string
-  image_url: string
-  createdAt: string
-  updatedAt: string
-}
-
-type CardProps = {
-  product: product;
-}
-
-export const Card = ({ product }: CardProps) => {
-
+export const Card = () => {
   return (
-    <Box bg="white" height={60} borderRadius="16">
-
-      <Flex align="center" justify="center" flexDirection="column" p={4}>
-        <Image src={product.image_url === "https://world.openfoodfacts.orgundefined"
-          ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMCW51HqCQOq88IvXYN0uLyZXgK-UzeyXG4Q&usqp=CAU'
-          : product.image_url}
-          alt={product.product_name}
-          boxSize="100px" w={10}
-        />
-
-        <Box h={16}>
-          <Text p={4} fontFamily="Poppins"
-            fontSize="12"
-            align="center"
-          >{product.product_name.slice(0, 100)} </Text>
+    <Flex align="center" justify="center" p={4}>
+      <Flex flexDirection="column" align="center">
+        <Box>
+          <Image
+            src="https://images.unsplash.com/photo-1616242780651-cdd1ddf6dcce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60"
+            alt="imagem"
+            boxSize="250px"
+            m={10}
+            borderRadius="10%"
+          />
         </Box>
 
-        <Modal product={product} />
+        <Box>
+          <Text fontSize="1.8rem" ml={10} fontWeight="bold">
+            Casa
+          </Text>
 
+          <Text mt={4} fontSize="1.6rem" ml={10} fontWeight="bold">
+            Rua Nossa Senhora da Aparecida
+          </Text>
 
+          <Text fontSize="1.6rem" ml={10} fontWeight="bold" mb={8}>
+            Agua Branca - São Paulo
+          </Text>
+          <DetailsProperty label={'Valor Locação:'} value={'R$1.200,00'} />
+          <DetailsProperty label={'Valor Locação:'} value={'R$2.6000,00'} />
+          <DetailsProperty label={'size: '} value={'100m2'} />
+          <DetailsProperty label={'Quartos: '} value={'2'} />
+          <DetailsProperty label={'Vagas:'} value={'3'} />
+        </Box>
 
-        {/*
-
-        <ButtonDetails product={product} />
-
-        <Link href={`/products/${product._id}`}>
-          <Button top="2" position="relative">Detalhes</Button>
+        <Link href="">
+          <Box
+            as="button"
+            mt="2rem"
+            height="3.6rem"
+            borderRadius="9999px"
+            transition="0.2s"
+            border="1px"
+            px="8rem"
+            fontSize="14px"
+            fontWeight="  "
+            bg="blue.800"
+            borderColor="#ccd0d5"
+            color="#FFF"
+            _hover={{
+              filter: 'brightness(0.7)'
+            }}
+          >
+            + Detalhes
+          </Box>
         </Link>
-      */}
-
-
       </Flex>
-
-
-    </Box >
-
-  )
-}
+    </Flex>
+  );
+};

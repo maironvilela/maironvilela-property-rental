@@ -2,8 +2,10 @@ import { Flex } from '@chakra-ui/react';
 import { GetStaticProps } from 'next';
 
 import { Banner } from '../components/Banner';
+import { FindProperties } from '../components/FindProperties';
+import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
-import { usePage } from '../hooks/page';
+import { PropertiesList } from '../components/PropertiesList';
 import api from '../services/api';
 
 type Property = {
@@ -19,9 +21,13 @@ export default function Home({ properties }: HomeProps) {
     <Flex align="center" flexDirection="column" w="100vw">
       <Header />
 
-      <section>
-        <Banner />
-      </section>
+      <Banner />
+
+      <FindProperties />
+
+      <PropertiesList />
+
+      <Footer />
     </Flex>
   );
 }
