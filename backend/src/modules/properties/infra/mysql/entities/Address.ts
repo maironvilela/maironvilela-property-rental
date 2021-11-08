@@ -1,5 +1,5 @@
 /**
-   * @summary Classe que representa o modelo de dados de um tipo de imóvel (Casa, Apartamento, Loja, ...) no banco de dados
+   * @summary Classe que representa o modelo de dados do endereço do imóvel
  */
 
 

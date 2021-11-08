@@ -64,9 +64,9 @@ describe('List Properties Controller', () => {
 
   it('should be able to return a listing of properties', async () => {
 
-    const response = await request(app).get('/api/properties');
+    const response = await request(app).get('/api/properties?size=10&&page=1');
 
-    expect(response.body.properties.length).toEqual(20);
+    expect(response.body.properties.length).toEqual(10);
 
   });
 });

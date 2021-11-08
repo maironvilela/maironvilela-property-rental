@@ -1,4 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/**
+    @summary Implementação da interface IPropertiesRepositories: Responsável por realizar as interações com o banco de dados
+**/
+
+
 import { CreatePropertyDTO } from '@modules/properties/dtos/CreatePropertyDTO';
 import { getRepository, Repository } from 'typeorm';
 
@@ -21,7 +25,10 @@ export class PropertiesRepository implements IPropertiesRepository {
 
   async findAll({ page, size }: FindAllPropertiesDTO): Promise<Property[]> {
 
-    const properties = await this.repository.find();
+    const properties = await this.repository.find({
+      skip: page,
+      take: size,
+    });
     return properties;
   }
 

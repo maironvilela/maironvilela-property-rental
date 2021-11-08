@@ -22,7 +22,7 @@ export class ListPropertiesController {
   async handle(request: Request, response: Response): Promise<Response<Property[]>> {
 
 
-    const { size = 5, page = 1 } = request.query;
+    const { size, page } = request.query;
 
 
     const listPropertiesUseCase = container.resolve(ListPropertiesUseCase);
