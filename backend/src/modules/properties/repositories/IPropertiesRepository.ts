@@ -29,4 +29,12 @@ export interface IPropertiesRepository {
  */
   save(property: Property): Promise<Property>
 
+
+  /**
+    * @description Função que pesquisa um registro de um imóvel no banco de dados pelo seu ID
+    * @param id ID do imóvel que deseja pesquisar
+    * @returns retorna as informações do imóvel caso encontrado
+    * @Example const result = await this.propertiesRepository.findById(id);
+  */
+  findById(id: string): Promise<Property | undefined>;
 }

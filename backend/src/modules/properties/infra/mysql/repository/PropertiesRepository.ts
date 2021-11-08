@@ -58,4 +58,12 @@ export class PropertiesRepository implements IPropertiesRepository {
     return propertySave;
 
   }
+
+  async findById(id: string): Promise<Property | undefined> {
+
+    const property = await this.repository.findOne({ id });
+
+    return property;
+  }
+
 }

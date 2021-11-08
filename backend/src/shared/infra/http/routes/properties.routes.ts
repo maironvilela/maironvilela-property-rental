@@ -9,15 +9,20 @@ import { body } from 'express-validator';
 
 import { CreatePropertiesController } from '../../../../modules/properties/useCases/createProperties/CreatePropertiesController';
 import { ListPropertiesController } from '../../../../modules/properties/useCases/ListProperties/ListPropertiesController';
+import { FindPropertyByIdController } from '../../../../modules/properties/useCases/FindPropertyById/FindPropertyByIdController';
 
 const listPropertiesController = new ListPropertiesController();
 
 const createPropertiesController = new CreatePropertiesController();
 
+const findPropertyByIdController = new FindPropertyByIdController();
+
 
 export const propertiesRoutes = Router();
 
 propertiesRoutes.get('/', listPropertiesController.handle);
+propertiesRoutes.get('/:id', findPropertyByIdController.handle);
+
 
 propertiesRoutes.post('/', [
   body('description').notEmpty(),

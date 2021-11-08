@@ -13,11 +13,14 @@ import { IPropertiesRepository } from '../IPropertiesRepository';
 
 export class PropertiesRepositoryFake implements IPropertiesRepository {
 
+
+
+
+
   private properties: Property[] = [];
 
 
   async save(property: Property): Promise<Property> {
-
     property.id = uuidv4();
     property.created_at = new Date(faker.date.past(10));
     property.updated_at = new Date(faker.date.future(10));
@@ -35,4 +38,12 @@ export class PropertiesRepositoryFake implements IPropertiesRepository {
 
     return this.properties.slice(initialRecord, size);
   }
+
+  async findById(id: string): Promise<Property | undefined> {
+
+    const property = this.properties.find(p => p.id === id);
+
+    return property;
+  }
+
 }

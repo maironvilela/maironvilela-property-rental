@@ -1,15 +1,16 @@
-import Link from 'next/link'
+import { Button } from '@chakra-ui/react';
 
-import { Button } from "@chakra-ui/react"
-import { usePage } from "../../hooks/page"
+import { usePage } from '../../hooks/page';
 
 type PaginationItemProps = {
   disable?: boolean;
   page: string;
-}
+};
 
-export const PaginationItem = ({ disable = false, page }: PaginationItemProps) => {
-
+export const PaginationItem = ({
+  disable = false,
+  page
+}: PaginationItemProps) => {
   const { setCurrentPage } = usePage();
   return (
     <Button
@@ -18,13 +19,12 @@ export const PaginationItem = ({ disable = false, page }: PaginationItemProps) =
       ml="auto"
       size="sm"
       background="green.700"
-      _hover={{ bg: "blue.400" }}
+      _hover={{ bg: 'blue.400' }}
       transition="0.8s"
       p={1}
-      color="white">
-
+      color="white"
+    >
       {page}
     </Button>
-
-  )
-}
+  );
+};
