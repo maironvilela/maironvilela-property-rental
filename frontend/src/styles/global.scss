@@ -1,0 +1,34 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --white: #FFFFFF;
+  --gray-900: #121214;
+}
+
+html {
+  /* A cada 1rem será considera 10px */
+  font-size: 62.5%;
+  body {
+    background:(--white);
+    color: var(--gray-900);
+   }
+
+body, input, textarea, select, button {
+  font-weight: 400;
+  font-size: 1.6rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+}
