@@ -86,16 +86,21 @@ $ yarn install
 
 $ mv .env.example .env
 
+# Renomeie o arquivo ormconfig.example.json para ormconfig.json e altere as informações de acesso ao banco de dados se necessário
+
+$ mv ormconfig.example.json ormconfig.example.json
+
 # Crie o containers do Mysql através do docker-compose
 $ make up
 
 # Cria as tabelas do banco de dados rodando as migrations do typeorm
 $ make run
-
-# Execute o projetos
-$ yarn dev
-
+ 
 ```
+
+> Observação: Como não há nenhuma informação sensívels nos arquivos de configuração do banco de dados e das variavéis de ambiente, mantive as informações 
+
+
 ## Documentação
 Para acessar a documentação da API, após "rodar" o projeto, acesse a seguinte url: http://localhost:3333/api-docs/
 
