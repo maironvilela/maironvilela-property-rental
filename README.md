@@ -7,7 +7,6 @@
 <p align="center">
   <a href="#sobre-o-projeto">Sobre o Projeto </a>|  
     <a href="#diagramas">Diagramas </a>
-
   <a href="#tecnologias-e-ferramentas">Tecnologias e Ferramentas </a>|
    <a href="#como-utilizar">Como Utilizar </a>|
   <a href="#documentação">Documentação </a>|
@@ -170,7 +169,6 @@ https://www.figma.com/file/2DQtli5BuCnqFj5IoyajI9/imobiliaria?node-id=0%3A1
 > Pendente
 
  
-
 
  
 
