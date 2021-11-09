@@ -64,6 +64,8 @@ Para clonar e executar a aplicação, é necessário ter instalado as seguintes 
 - [Docker](https://www.docker.com/)
 - [Git](https://git-scm.com/)
 
+### Back-End
+
 ```bash
 # Realize o clone do repositorio
 $ git clone https://github.com/maironvilela/property-rental.git
@@ -100,6 +102,20 @@ $ make run
 > Observação 01: Como não há nenhuma informação sensívels nos arquivos de configuração do banco de dados e das variavéis de ambiente, mantive as informações 
 
 > Observação 02: Necessário realizar a criação do banco de dados com o nome definido nos arquivos de configuração
+
+
+### Front-End
+
+```bash
+# navegue ate o diretório front-end. (Pressupondo que esteja no diretório back-end)
+$ cd ../frontend
+
+# Instale as dependencias
+$ yarn install
+
+```
+
+> Observação: URL de acesso ao sistema via browser: http://localhost:3333
 
 
 ## Documentação
