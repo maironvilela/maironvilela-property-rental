@@ -4,7 +4,7 @@ import { Box, Flex, Text, Image } from '@chakra-ui/react';
 import Link from 'next/link';
 
 import { Property } from '../../../types';
-import { DetailsProperty } from './DetailsProperty';
+import { DetailsProperty } from '../../DetailsProperty';
 
 interface CardProps {
   property: Property;
@@ -53,7 +53,7 @@ export const Card = ({ property }: CardProps) => {
           </Box>
         </Box>
 
-        <Link href="">
+        <Link href="/properties/1">
           <Box
             as="button"
             mt="2rem"

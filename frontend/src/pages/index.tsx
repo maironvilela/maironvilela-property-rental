@@ -40,8 +40,6 @@ export const getStaticProps: GetStaticProps = async () => {
     }
   });
 
-  console.log(JSON.stringify(data.properties, null, 2));
-
   return {
     props: {
       properties: data.properties

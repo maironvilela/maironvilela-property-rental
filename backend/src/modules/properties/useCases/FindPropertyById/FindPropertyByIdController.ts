@@ -15,7 +15,7 @@ export class FindPropertyByIdController {
      * @description Função chamada pela rota para receber as chamadas a API. Recebe como query params, o id do imóvel que deseja pesquisar
      * @param request request (express) da requisição
      * @param response response (express) da requisição
-     * @returns retorna uma lista de imóveis
+     * @returns retorna um emóvel caso o mesmo seja encontrado
      * @Example propertiesRoutes.get('/:id', FindPropertyByIdController.handle);
    */
   async handle(request: Request, response: Response): Promise<Response<Property>> {
@@ -24,8 +24,8 @@ export class FindPropertyByIdController {
     const findPropertiesByIdUseCase = container.resolve(FindPropertyByIdUseCase);
 
 
-    const properties = await findPropertiesByIdUseCase.execute({ id: String(id) });
+    const property = await findPropertiesByIdUseCase.execute({ id: String(id) });
 
-    return response.status(200).json({ properties });
+    return response.status(200).json({ property });
   }
 }
