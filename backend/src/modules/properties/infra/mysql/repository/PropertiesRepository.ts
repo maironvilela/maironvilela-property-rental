@@ -26,8 +26,10 @@ export class PropertiesRepository implements IPropertiesRepository {
   async findAll({ page, size }: FindAllPropertiesDTO): Promise<Property[]> {
 
     const properties = await this.repository.find({
-      skip: page,
+      skip: page - 1,
       take: size,
+      relations: ['address', 'propertyImages']
+
     });
     return properties;
   }
@@ -40,7 +42,8 @@ export class PropertiesRepository implements IPropertiesRepository {
     description,
     propertyType,
     address,
-    propertyImages }: CreatePropertyDTO): Promise<Property> {
+    propertyImages,
+  }: CreatePropertyDTO): Promise<Property> {
 
     const property = this.repository.create({
       price,
@@ -50,7 +53,7 @@ export class PropertiesRepository implements IPropertiesRepository {
       description,
       propertyType,
       address,
-      propertyImages
+      propertyImages,
     });
 
     const propertySave = await this.repository.save(property);

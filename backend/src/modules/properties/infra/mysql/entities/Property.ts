@@ -25,9 +25,9 @@ export class Property {
   @Column()
   price: number;
 
+
   @OneToMany(() => PropertyImages, propertyImages => propertyImages.property, { cascade: true })
   @JoinColumn({ name: 'address_id' })
-
   propertyImages: PropertyImages[];
 
   @OneToOne(() => Address, { cascade: true })

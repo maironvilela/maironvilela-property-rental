@@ -14,6 +14,9 @@ export class PropertyImages {
   @Column({ name: 'image_url' })
   imageUrl: string;
 
+  @Column({ name: 'is_main_image' })
+  isMainImage: boolean;
+
   @ManyToOne(() => Property, property => property.propertyType)
   @JoinColumn({ name: 'property_id' })
   property?: Property;

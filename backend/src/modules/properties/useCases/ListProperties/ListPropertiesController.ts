@@ -25,10 +25,12 @@ export class ListPropertiesController {
     const { size, page } = request.query;
 
 
+
     const listPropertiesUseCase = container.resolve(ListPropertiesUseCase);
 
 
     const properties = await listPropertiesUseCase.execute({ page: Number(page), size: Number(size) });
+
 
     return response.status(200).json({ properties });
   }

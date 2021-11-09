@@ -37,14 +37,17 @@ describe('Create Properties', () => {
     const result = await createPropertiesUseCase.execute(property);
 
 
+
     expect(result).toHaveProperty('id');
     expect(result).toHaveProperty('propertyType');
     expect(result).toHaveProperty('address');
     expect(result).toHaveProperty('created_at');
     expect(result).toHaveProperty('updated_at');
     expect(result).toHaveProperty('propertyImages');
+
     expect(result.specifications.length).toEqual(5);
     expect(result.propertyImages.length).toEqual(5);
+    expect(result.propertyImages[2].isMainImage).toEqual(true);
 
 
   });
@@ -55,6 +58,7 @@ describe('Create Properties', () => {
   * @description Retorna um imóvel com dados fictícios utilizando a biblioteca faker. Constante é exportada para utilização nos demais testes de que necessita da criação de uma instância de imóvel
 */
 export const getPropertyInTest = () => {
+
   const property = new Property();
   const address = new Address();
 
@@ -70,7 +74,8 @@ export const getPropertyInTest = () => {
     });
 
     propertyImages.push({
-      imageUrl: faker.image.imageUrl(),
+      imageUrl: `http://placeimg.com/1024/${Math.floor(Math.random() * (700 - 500) + 500)}/nature`,
+      isMainImage: i === 2 ? true : false
     });
 
   }

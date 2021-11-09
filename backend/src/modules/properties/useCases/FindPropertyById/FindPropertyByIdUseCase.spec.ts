@@ -8,7 +8,7 @@ import 'reflect-metadata';
 import { IPropertiesRepository } from '../../repositories/IPropertiesRepository';
 import { PropertiesRepositoryFake } from '../../repositories/fake/PropertiesRepositoryFake';
 
-import { getPropertyInTest } from '../createProperties/CreatePropertiesUseCase.spec';
+import { getPropertyInTest } from '../CreateProperties/CreatePropertiesUseCase.spec';
 import { FindPropertyByIdUseCase } from './FindPropertyByIdUseCase';
 import { Property } from '@modules/properties/infra/mysql/entities/Property';
 import AppError from '@shared/error/AppError';

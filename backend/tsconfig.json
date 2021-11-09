@@ -25,7 +25,8 @@
   },
   "include": [
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "src/shared/infra/typeorm/migrations/1636470565588-AddIsMainImagePropertyInPropertyImagesTablets"
   ],
   "exclude": [
     "node_modules"

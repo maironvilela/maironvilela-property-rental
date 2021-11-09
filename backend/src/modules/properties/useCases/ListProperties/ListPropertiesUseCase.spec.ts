@@ -8,7 +8,7 @@ import 'reflect-metadata';
 import { IPropertiesRepository } from '../../repositories/IPropertiesRepository';
 import { PropertiesRepositoryFake } from '../../repositories/fake/PropertiesRepositoryFake';
 import { ListPropertiesUseCase } from './ListPropertiesUseCase';
-import { getPropertyInTest } from '../createProperties/CreatePropertiesUseCase.spec';
+import { getPropertyInTest } from '../CreateProperties/CreatePropertiesUseCase.spec';
 
 
 /**
@@ -42,11 +42,14 @@ describe('List Properties', () => {
 
     const result = await listPropertiesUseCase.execute({ page, size });
 
+
     // Valida a quantidade de retorno da lista que deve ser o valor definido na constante "size"
     expect(result.length).toEqual(size);
+    expect(result[0]).toHaveProperty('address');
 
 
   });
+
 });
 
 

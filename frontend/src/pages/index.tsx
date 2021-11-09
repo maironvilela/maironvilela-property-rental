@@ -7,10 +7,7 @@ import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 import { PropertiesList } from '../components/PropertiesList';
 import api from '../services/api';
-
-type Property = {
-  id: number;
-};
+import { Property } from '../types';
 
 interface HomeProps {
   properties: Property[];
@@ -25,7 +22,7 @@ export default function Home({ properties }: HomeProps) {
 
       <FindProperties />
 
-      <PropertiesList />
+      <PropertiesList properties={properties} />
 
       <Footer />
     </Flex>
@@ -36,20 +33,18 @@ export const getStaticProps: GetStaticProps = async () => {
   const page = 1;
   const size = 6;
 
-  const { data } = await api.get(`properties`, {
+  const { data } = await api.get('/properties', {
     params: {
-      size,
-      page
+      page,
+      size
     }
   });
 
-  const { properties } = data;
-
-  console.log(properties);
+  console.log(JSON.stringify(data.properties, null, 2));
 
   return {
     props: {
-      properties: properties
+      properties: data.properties
     },
     revalidate: 60 * 60 * 24 // 24horas
   };

@@ -7,7 +7,7 @@ import { Router } from 'express';
 import { body } from 'express-validator';
 
 
-import { CreatePropertiesController } from '../../../../modules/properties/useCases/createProperties/CreatePropertiesController';
+import { CreatePropertiesController } from '../../../../modules/properties/useCases/CreateProperties/CreatePropertiesController';
 import { ListPropertiesController } from '../../../../modules/properties/useCases/ListProperties/ListPropertiesController';
 import { FindPropertyByIdController } from '../../../../modules/properties/useCases/FindPropertyById/FindPropertyByIdController';
 

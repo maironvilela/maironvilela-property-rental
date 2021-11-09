@@ -1,6 +1,5 @@
 import { useDisclosure } from '@chakra-ui/hooks';
 import {
-  Button,
   Flex,
   Modal,
   ModalOverlay,

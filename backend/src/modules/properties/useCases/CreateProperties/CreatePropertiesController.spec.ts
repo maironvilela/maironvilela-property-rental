@@ -35,6 +35,9 @@ describe('Create Properties Controller', () => {
 
     const response = await request(app).post('/api/properties').send(property);
 
+    console.log(response.body.propertyImages);
+
+
     expect(response.status).toBe(200);
     expect(response.body).toHaveProperty('id');
     expect(response.body).toHaveProperty('propertyType');
@@ -45,6 +48,8 @@ describe('Create Properties Controller', () => {
     expect(response.body).toHaveProperty('propertyImages');
     expect(response.body.propertyImages.length).toEqual(5);
     expect(response.body.specifications.length).toEqual(5);
+    expect(response.body.propertyImages[2].isMainImage).toEqual(true);
+
 
 
   });

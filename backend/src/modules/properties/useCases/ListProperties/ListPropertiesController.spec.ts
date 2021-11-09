@@ -66,7 +66,10 @@ describe('List Properties Controller', () => {
 
     const response = await request(app).get('/api/properties?size=10&&page=1');
 
+
     expect(response.body.properties.length).toEqual(10);
+    expect(response.body.properties[0]).toHaveProperty('address');
+
 
   });
 });
