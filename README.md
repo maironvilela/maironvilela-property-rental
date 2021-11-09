@@ -98,7 +98,9 @@ $ make run
  
 ```
 
-> Observação: Como não há nenhuma informação sensívels nos arquivos de configuração do banco de dados e das variavéis de ambiente, mantive as informações 
+> Observação 01: Como não há nenhuma informação sensívels nos arquivos de configuração do banco de dados e das variavéis de ambiente, mantive as informações 
+
+> Observação 02: Necessário realizar a criação do banco de dados com o nome definido nos arquivos de configuração
 
 
 ## Documentação
