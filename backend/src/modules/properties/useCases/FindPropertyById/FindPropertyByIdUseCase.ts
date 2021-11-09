@@ -1,6 +1,6 @@
 import { Property } from '@modules/properties/infra/mysql/entities/Property';
 import { IPropertiesRepository } from '@modules/properties/repositories/IPropertiesRepository';
-import AppError from '@shared/error/AppError';
+import AppError from '../../../../shared/error/AppError';
 import { inject, injectable } from 'tsyringe';
 
 
