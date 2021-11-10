@@ -4,10 +4,10 @@
 */
 
 
-import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { Address } from './Address';
 import { PropertyImages } from './PropertyImages';
-import { Specification } from './Specification';
+import { Specifications } from './Specifications';
 
 
 @Entity('properties')
@@ -34,14 +34,9 @@ export class Property {
   @JoinColumn({ name: 'address_id' })
   address: Address;
 
-
-  @ManyToMany(() => Specification, { cascade: true })
-  @JoinTable({
-    name: 'specifications_properties',
-    joinColumns: [{ name: 'property_id' }],
-    inverseJoinColumns: [{ name: 'specification_id' }]
-  })
-  specifications: Specification[];
+  @OneToMany(() => Specifications, specifications => specifications.property, { cascade: true })
+  @JoinColumn({ name: 'address_id' })
+  specifications: Specifications[];
 
 
   @Column({ name: 'is_location' })

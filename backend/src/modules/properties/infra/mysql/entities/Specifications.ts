@@ -4,11 +4,12 @@
 */
 
 
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Property } from './Property';
 
 
 @Entity('specifications')
-export class Specification {
+export class Specifications {
   @PrimaryGeneratedColumn()
   id?: string;
 
@@ -17,6 +18,10 @@ export class Specification {
 
   @Column()
   description: string;
+
+  @ManyToOne(() => Property, property => property.propertyType)
+  @JoinColumn({ name: 'property_id' })
+  property?: Property;
 
 
   @CreateDateColumn()

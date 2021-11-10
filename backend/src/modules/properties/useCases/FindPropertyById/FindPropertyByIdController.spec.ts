@@ -37,6 +37,7 @@ describe('List Properties Controller', () => {
 
 
     for (let i = 1; i <= 20; i++) {
+
       await connection.query(`
       INSERT INTO properties(description, price, is_sale, is_location, property_type, address_id)
       VALUES(
@@ -47,8 +48,36 @@ describe('List Properties Controller', () => {
       'casa',
         '1')`
       );
-
     }
+
+
+    for (let i = 1; i <= 10; i++) {
+      await connection.query(`
+      INSERT INTO property_images(image_url,property_id, is_main_image)
+      VALUES(
+        '${faker.image.imageUrl()}',
+        '1',
+        ${i == 2 ? '1' : '0'}
+       );`
+      );
+    }
+
+    await connection.query(`
+      INSERT INTO specifications(name,description, property_id)
+      VALUES('quartos', '2', '1');`
+    );
+    await connection.query(`
+    INSERT INTO specifications(name,description, property_id)
+    VALUES('vagas', '3', '1');`
+    );
+
+    await connection.query(`
+    INSERT INTO specifications(name,description, property_id)
+    VALUES('área', '200', '1');`
+    );
+
+
+
 
   });
 
@@ -68,9 +97,22 @@ describe('List Properties Controller', () => {
 
     const id = response.body.properties[0].id;
 
+
     const responseGetProperty = await request(app).get(`/api/properties/${id}`);
 
+
+    // Válida o status da requisição
     expect(responseGetProperty.status).toEqual(200);
+
+    expect(responseGetProperty.body.property).toHaveProperty('propertyImages');
+    expect(responseGetProperty.body.property.propertyImages.length).toEqual(10);
+
+    expect(responseGetProperty.body.property).toHaveProperty('address');
+    expect(responseGetProperty.body.property.address).not.toBeNull();
+
+    expect(responseGetProperty.body.property).toHaveProperty('specifications');
+    expect(responseGetProperty.body.property.specifications.length).toEqual(3);
+
 
 
   });

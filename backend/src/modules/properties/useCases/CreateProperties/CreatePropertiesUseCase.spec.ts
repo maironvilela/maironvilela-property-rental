@@ -9,7 +9,7 @@ import { Property } from '../../infra/mysql/entities/Property';
 import { IPropertiesRepository } from '../../repositories/IPropertiesRepository';
 import { PropertiesRepositoryFake } from '../../repositories/fake/PropertiesRepositoryFake';
 import { CreatePropertiesUseCase } from './CreatePropertiesUseCase';
-import { Specification } from '@modules/properties/infra/mysql/entities/Specification';
+import { Specifications } from '@modules/properties/infra/mysql/entities/Specifications';
 import { Address } from '@modules/properties/infra/mysql/entities/Address';
 import { PropertyImages } from '@modules/properties/infra/mysql/entities/PropertyImages';
 
@@ -62,7 +62,7 @@ export const getPropertyInTest = () => {
   const property = new Property();
   const address = new Address();
 
-  const specifications: Specification[] = [];
+  const specifications: Specifications[] = [];
 
   const propertyImages: PropertyImages[] = [];
 

@@ -1,7 +1,11 @@
 import { Flex, Text, Box } from '@chakra-ui/layout';
 
-export const Footer = () => (
-  <Flex direction="column" bg="blue.800" w="100vw" mt="10rem" px={20} py={10}>
+interface FooterProps {
+  mt?: string;
+}
+
+export const Footer = ({ mt = '5rem' }: FooterProps) => (
+  <Flex direction="column" bg="blue.800" w="100vw" px={20} py={10} mt={mt}>
     <Text color="white" fontSize="3rem" fontWeight="bold">
       Imobiliária StayHome
     </Text>

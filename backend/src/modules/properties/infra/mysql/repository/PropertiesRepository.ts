@@ -65,7 +65,7 @@ export class PropertiesRepository implements IPropertiesRepository {
   async findById(id: string): Promise<Property | undefined> {
 
     const property = await this.repository.findOne({ id }, {
-      relations: ['address', 'propertyImages']
+      relations: ['address', 'propertyImages', 'specifications']
 
     });
 

@@ -17,14 +17,10 @@ export default function Home({ properties }: HomeProps) {
   return (
     <Flex align="center" flexDirection="column" w="100vw">
       <Header />
-
       <Banner />
-
       <FindProperties />
-
       <PropertiesList properties={properties} />
-
-      <Footer />
+      <Footer mt={'10rem'} />
     </Flex>
   );
 }

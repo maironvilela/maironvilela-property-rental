@@ -35,7 +35,6 @@ describe('Create Properties Controller', () => {
 
     const response = await request(app).post('/api/properties').send(property);
 
-    console.log(response.body.propertyImages);
 
 
     expect(response.status).toBe(200);
