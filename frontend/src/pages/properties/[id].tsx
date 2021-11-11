@@ -29,17 +29,27 @@ interface IdProps {
   images: Images[];
   summaryAddress: Summary;
   summaryPropertyDetails: Summary;
+  summaryAmountDetails: Summary;
 }
 
 export default function Id({
   property,
   images,
   summaryAddress,
-  summaryPropertyDetails
+  summaryPropertyDetails,
+  summaryAmountDetails
 }: IdProps) {
   const { isFallback } = useRouter();
 
-  console.log(JSON.stringify(property.address));
+  const propertyAbout = `Excelente apartamento, 98,99m²  claro e arejado, em ponto nobre do Bairro Silveira.
+
+  Oportunidade!!
+
+  Excelente localização próximo a todo tipo de comércio, linhas de ônibus e a 2 quarteirões do Colégio Magnum.
+
+  Apartamento amplo, claro e arejado sendo:
+
+  Sala 02 ambientes com piso em porcelanato,`;
 
   return (
     <>
@@ -59,8 +69,8 @@ export default function Id({
             </Box>
 
             <Summary
-              title={summaryAddress.title}
-              keyValue={summaryAddress.summary}
+              title={summaryAmountDetails.title}
+              keyValue={summaryAmountDetails.summary}
               size={'70vw'}
               bg={'white'}
               mt={'5rem'}
@@ -72,6 +82,20 @@ export default function Id({
               size={'70vw'}
               bg={'white'}
               mt={'5rem'}
+            />
+
+            <Summary
+              title={summaryAddress.title}
+              keyValue={summaryAddress.summary}
+              size={'70vw'}
+              bg={'white'}
+              mt={'5rem'}
+            />
+
+            <Summary
+              title="Mais sobre este imóvel"
+              propertyAbout={propertyAbout}
+              size={'70vw'}
             />
           </Flex>
 
@@ -111,7 +135,7 @@ export const getStaticProps: GetStaticProps = async ctx => {
 
   const property = data.property;
 
-  console.log(JSON.stringify(property, null, 2));
+  console.log(property.propertyImages);
 
   const images = property.propertyImages.map(image => {
     return {
@@ -150,12 +174,56 @@ export const getStaticProps: GetStaticProps = async ctx => {
     title: 'Detalhes do Imóvel',
     summary: [
       {
-        key: 'Endereço',
-        value: `
-          ${property.address.streetAddress},
-          ${property.address.number} -
-          ${property.address.complement}
-        `
+        key: 'Código: ',
+        value: '2366525'
+      },
+
+      {
+        key: 'Área: ',
+        value: '600m2'
+      },
+      {
+        key: 'Quartos: ',
+        value: '5'
+      },
+      {
+        key: 'Vagas: ',
+        value: '2'
+      },
+      {
+        key: 'Banheiros: ',
+        value: '2'
+      },
+      {
+        key: 'Aceita Pets: ',
+        value: 'Sim'
+      }
+    ]
+  };
+
+  const summaryAmountDetails = {
+    title: 'Detalhes Financeiro',
+    summary: [
+      {
+        key: 'Valor Aluguel: ',
+        value: 'R$1.600,00'
+      },
+
+      {
+        key: 'Valor Venda: ',
+        value: 'R$2.600.000,00'
+      },
+      {
+        key: 'Contrato (Aluguel): ',
+        value: '3 Anos'
+      },
+      {
+        key: 'IPTU (mensal): ',
+        value: 'R$610,00'
+      },
+      {
+        key: 'Condominio (mensal): ',
+        value: 'R$1.610,00'
       }
     ]
   };
@@ -165,7 +233,8 @@ export const getStaticProps: GetStaticProps = async ctx => {
       property,
       images,
       summaryAddress,
-      summaryPropertyDetails
+      summaryPropertyDetails,
+      summaryAmountDetails
     },
     revalidate: 60 * 60 * 24 // 24 horas
   };

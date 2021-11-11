@@ -53,7 +53,7 @@ export const Card = ({ property }: CardProps) => {
           </Box>
         </Box>
 
-        <Link href="/properties/1">
+        <Link href={`/properties/${property.id}`}>
           <Box
             as="button"
             mt="2rem"

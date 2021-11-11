@@ -9,14 +9,16 @@ type KeyValue = {
 
 interface SummaryProps {
   title: string;
-  keyValue: KeyValue[];
+  propertyAbout?: string;
+  keyValue?: KeyValue[];
   bg?: string;
   mt?: string;
   size: string;
 }
 
 export const Summary = ({
-  title = 'Descição',
+  title,
+  propertyAbout,
   keyValue,
   size,
   bg = 'white',
@@ -30,11 +32,17 @@ export const Summary = ({
         </Text>
       </Flex>
 
-      <Flex flexDirection="column">
-        {keyValue.map(k => (
-          <DetailsProperty key={k.key} label={k.key} value={k.value} />
-        ))}
-      </Flex>
+      {propertyAbout ? (
+        <Text ml="3rem" mt="1rem">
+          {propertyAbout}
+        </Text>
+      ) : (
+        <Flex flexDirection="column" mt="1rem">
+          {keyValue.map(k => (
+            <DetailsProperty key={k.key} label={k.key} value={k.value} />
+          ))}
+        </Flex>
+      )}
     </Flex>
   );
 };

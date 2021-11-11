@@ -32,7 +32,7 @@ export const Slide = ({ images }: SlideProps) => {
     >
       {images.map(image => (
         <SwiperSlide key={image.id}>
-          <Link href="/continent" textDecor="none">
+          <Link>
             <Flex
               backgroundImage={image.url}
               backgroundPosition="center"
