@@ -16,9 +16,8 @@ import AppError from '../../error/AppError';
 
 import createConnection from '../typeorm';
 
-
-
 import '../typeorm';
+
 
 
 createConnection();

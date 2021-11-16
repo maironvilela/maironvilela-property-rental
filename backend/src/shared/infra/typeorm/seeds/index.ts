@@ -1,16 +1,15 @@
 
-import { Property } from '@modules/properties/infra/mysql/entities/Property';
+import { Property } from '../../../../modules/properties/infra/mysql/entities/Property';
 import { savePropertyQueue } from '../../../../modules/properties/lib/Queue';
 
 
 
 import faker from 'faker';
-import { Specifications } from '@modules/properties/infra/mysql/entities/Specifications';
-import { Address } from '@modules/properties/infra/mysql/entities/Address';
-import { PropertyImages } from '@modules/properties/infra/mysql/entities/PropertyImages';
+import { Specifications } from '../../../../modules/properties/infra/mysql/entities/Specifications';
+import { Address } from '../../../../modules/properties/infra/mysql/entities/Address';
+import { PropertyImages } from '../../../../modules/properties/infra/mysql/entities/PropertyImages';
 
 import createConnection from '../index';
-import { delay } from 'tsyringe';
 
 export const getPropertyInTest = async (i: number) => {
 

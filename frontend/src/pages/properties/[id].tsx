@@ -57,8 +57,6 @@ export default function Id({
         <h1>Carregando</h1>
       ) : (
         <Flex align="center" flexDirection="column" w="100vw" justify="center">
-          <Header />
-
           <Flex as="section" w="100vw" direction="column" align="center">
             <Text mt="2rem" fontSize="2.4rem" fontWeight="bold">
               Titulo do Anúncio
@@ -98,8 +96,6 @@ export default function Id({
               size={'70vw'}
             />
           </Flex>
-
-          <Footer />
         </Flex>
       )}
     </>
