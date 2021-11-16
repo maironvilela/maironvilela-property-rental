@@ -26,6 +26,7 @@
     "prettier"
   ],
   "rules": {
+    "prefer-const": "off",
     "react/no-children-prop": "off",
     "prettier/prettier": "error",
     "space-before-function-paren": "off",

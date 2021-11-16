@@ -1,86 +1,88 @@
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
 
-import {
-  Box,
-  Button,
-  HStack,
-  Text,
-  useBreakpointValue
-} from '@chakra-ui/react';
+import { Button, Flex, HStack } from '@chakra-ui/react';
 
-import { usePage } from '../../hooks/page';
-import { PaginationItem } from './PaginationItem';
+import { ItemPagination } from './ItemPagination';
 
-type PaginationProps = {
-  totalPage: number;
-};
+interface PaginationProps {
+  totalRecords: number;
+  recordsPerPage: number;
+  currentPage: number;
+  setCurrentPage(page: number): void;
+}
 
-export default function Pagination({ totalPage }: PaginationProps) {
-  const isDisplayInformationPage = useBreakpointValue({
-    base: true,
-    sm: false
-  });
-  const alignPagination = useBreakpointValue({ base: 'center', sm: false });
+export const Pagination = ({
+  totalRecords,
+  recordsPerPage,
+  currentPage,
+  setCurrentPage
+}: PaginationProps) => {
+  const totalPages = useMemo(() => {
+    return Math.ceil(totalRecords / recordsPerPage);
+  }, []);
 
-  const { currentPage } = usePage();
-
-  const [pages, setPages] = useState([]);
-
-  useEffect(() => {
-    let init = currentPage - 3;
-    let finalPage = currentPage + 3;
+  const pages = useMemo(() => {
+    const pages = [];
+    let firstPage = currentPage - 2;
+    let lastPage = currentPage + 2;
 
     switch (currentPage) {
       case 1:
       case 2:
-      case 3:
-        init = 1;
-        finalPage = totalPage > 7 ? 7 : totalPage;
+        firstPage = 1;
+        lastPage = 5;
         break;
 
-      case totalPage - 1:
-        init = totalPage - 6;
-        finalPage = totalPage;
+      case totalPages:
+      case totalPages - 1:
+      case totalPages - 2:
+        firstPage = currentPage - 2;
+        lastPage = totalPages;
         break;
-      case totalPage:
-        init = totalPage - 6;
-        finalPage = totalPage;
     }
 
-    const pages: number[] = [];
-    for (let i = init; i <= finalPage; i++) {
+    for (let i = firstPage; i <= lastPage; i++) {
       pages.push(i);
     }
-    setPages(pages);
+
+    return pages;
+  }, [currentPage]);
+
+  const showPreviousPages = useMemo(() => {
+    return currentPage > 3;
+  }, [currentPage]);
+
+  const showNextPages = useMemo(() => {
+    return currentPage < totalPages - 2;
   }, [currentPage]);
 
   return (
-    <Box
-      mt="5"
-      display="flex"
-      align="center"
-      justify="space-between"
-      pl={4}
-      pr={4}
-      pb={10}
-    >
-      {isDisplayInformationPage || (
-        <Box>
-          <Text>
-            Pagina {currentPage} de {totalPage}{' '}
-          </Text>
-        </Box>
+    <HStack spacing="4px" mt="3rem">
+      {showPreviousPages && (
+        <HStack spacing="4px">
+          <ItemPagination label="1" setCurrentPage={setCurrentPage} />
+          <ItemPagination label="..." />
+        </HStack>
       )}
 
-      <HStack spacing="1" ml="auto">
-        {pages.map(page => (
-          <PaginationItem
-            disable={currentPage == page}
-            page={page}
-            key={page}
+      {pages.map(p => (
+        <ItemPagination
+          label={String(p)}
+          key={p}
+          isCurrentPage={p === currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      ))}
+
+      {showNextPages && (
+        <HStack spacing="4px">
+          <ItemPagination label="..." />
+          <ItemPagination
+            label={String(totalPages)}
+            setCurrentPage={setCurrentPage}
           />
-        ))}
-      </HStack>
-    </Box>
+        </HStack>
+      )}
+    </HStack>
   );
-}
+};

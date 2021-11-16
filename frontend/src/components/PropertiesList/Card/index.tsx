@@ -28,6 +28,7 @@ export const Card = ({ property }: CardProps) => {
             mx={10}
             my={8}
             borderRadius="5%"
+            loading="lazy"
           />
         </Box>
 

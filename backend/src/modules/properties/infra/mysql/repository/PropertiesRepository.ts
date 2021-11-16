@@ -26,7 +26,7 @@ export class PropertiesRepository implements IPropertiesRepository {
   async findAll({ page, size }: FindAllPropertiesDTO): Promise<Property[]> {
 
     const properties = await this.repository.find({
-      skip: page - 1,
+      skip: (page - 1) * size,
       take: size,
       relations: ['address', 'propertyImages']
 

@@ -1,3 +1,5 @@
+import { useQuery } from 'react-query';
+
 import { useBreakpointValue, SimpleGrid, Flex } from '@chakra-ui/react';
 
 import { Property } from '../../types';

@@ -26,6 +26,8 @@ export class FindPropertyByIdController {
 
     const property = await findPropertiesByIdUseCase.execute({ id: String(id) });
 
+    response.setHeader('x-total-count', '10');
+
     return response.status(200).json({ property });
   }
 }

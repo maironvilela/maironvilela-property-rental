@@ -1,8 +1,28 @@
-import { Flex, Box, Image, Text } from '@chakra-ui/react';
+import { Flex, Box, Image, Text, Link } from '@chakra-ui/react';
 
 import { Icon } from './Icon';
 
-export const Card = () => {
+interface CardProps {
+  id: number;
+  title: string;
+  streetAddress: string;
+  number: number;
+  complement: string;
+  district: string;
+  city: string;
+  state: string;
+}
+
+export const Card = ({
+  id,
+  title = 'Titulo do Anuncio',
+  streetAddress,
+  number,
+  complement,
+  district,
+  city,
+  state
+}: CardProps) => {
   const mainImage = 'http://placeimg.com/200/671/nature';
 
   return (
@@ -13,11 +33,15 @@ export const Card = () => {
         </Box>
 
         <Box pt="1rem">
-          <Text fontWeight="bold">
-            Apartamento de 2 quartos para alugar – Belo Horizonte
+          <Link href={`/properties/${id}`}>
+            <Text fontWeight="bold">{title}</Text>
+          </Link>
+          <Text fontSize="1.2rem">
+            {streetAddress}, {number} - {complement}
           </Text>
-          <Text fontSize="1.2rem">Rua Padre Antônio Tomás</Text>
-          <Text fontSize="1.2rem">Água Branca - Belo Horizonte</Text>
+          <Text fontSize="1.2rem">
+            {district} - {city}/{state}
+          </Text>
 
           <Flex direction="row">
             <Icon imageUrl="/images/icon_area.svg" label="1200m2" />
