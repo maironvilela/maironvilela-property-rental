@@ -38,15 +38,33 @@ describe('List Properties Controller', () => {
 
     for (let i = 1; i <= 20; i++) {
       await connection.query(`
-      INSERT INTO properties(description, price, is_sale, is_location, property_type, address_id)
+      INSERT INTO properties(description, sale_price,rental_price, is_sale, is_location, property_type, address_id)
       VALUES(
       '${faker.lorem.sentence()}',
+      ${faker.finance.amount()},
       ${faker.finance.amount()},
       ${faker.datatype.boolean()},
       ${faker.datatype.boolean()},
       'casa',
         '1')`
       );
+
+    }
+
+    for (let i = 1; i <= 20; i++) {
+      await connection.query(`
+      INSERT INTO specifications(name, description, property_id)
+      VALUES(
+      '${faker.lorem.words(2)}',
+      '${faker.lorem.words(1)}',
+      ${i})`);
+
+      await connection.query(`
+      INSERT INTO specifications(name, description, property_id)
+      VALUES(
+      '${faker.lorem.words(2)}',
+      '${faker.lorem.words(1)}',
+      ${i})`);
 
     }
 
@@ -65,6 +83,8 @@ describe('List Properties Controller', () => {
   it('should be able to return a listing of properties', async () => {
 
     const response = await request(app).get('/api/properties?size=10&&page=1');
+
+    console.log(JSON.stringify(response.body.properties, null, 2));
 
 
     expect(response.body.properties.length).toEqual(10);

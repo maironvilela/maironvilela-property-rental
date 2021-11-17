@@ -37,6 +37,7 @@ describe('Create Properties Controller', () => {
 
 
 
+
     expect(response.status).toBe(200);
     expect(response.body).toHaveProperty('id');
     expect(response.body).toHaveProperty('propertyType');
@@ -62,7 +63,8 @@ describe('Create Properties Controller', () => {
     const response = await request(app).post('/api/properties').send({
 
       description: '',
-      price: 600,
+      salePrice: 600,
+      rentalPrice: 600,
       isLocation: true,
       isSale: true
 
@@ -83,7 +85,7 @@ describe('Create Properties Controller', () => {
   /**
  * @description Valida a exceção caso nao for informado o valor do imóvel
 **/
-  it('should not be able to create a new property without the price property', async () => {
+  it('should not be able to create a new property without the sale_price property', async () => {
 
 
     const response = await request(app).post('/api/properties').send({
@@ -91,6 +93,8 @@ describe('Create Properties Controller', () => {
       description: faker.lorem.paragraph(),
       isSale: faker.datatype.boolean(),
       isLocation: faker.datatype.boolean(),
+      rentalPrice: 600,
+
 
     });
 
@@ -100,7 +104,7 @@ describe('Create Properties Controller', () => {
     expect(response.status).toBe(400);
     expect(errors.length).toEqual(1);
     expect(errors[0].msg).toEqual('Invalid value');
-    expect(errors[0].param).toEqual('price');
+    expect(errors[0].param).toEqual('salePrice');
 
   });
 
@@ -114,8 +118,10 @@ describe('Create Properties Controller', () => {
     const response = await request(app).post('/api/properties').send({
 
       description: faker.lorem.paragraph(),
-      price: faker.datatype.number(),
-      isLocation: faker.datatype.boolean()
+      priceSale: faker.datatype.number(),
+      isLocation: faker.datatype.boolean(),
+      salePrice: faker.datatype.number(),
+      rentalPrice: faker.datatype.number()
 
     });
 
@@ -140,7 +146,8 @@ describe('Create Properties Controller', () => {
     const response = await request(app).post('/api/properties').send({
 
       description: faker.lorem.paragraph(),
-      price: faker.datatype.number(),
+      salePrice: faker.datatype.number(),
+      rentalPrice: faker.datatype.number(),
       isSale: faker.datatype.boolean(),
 
     });

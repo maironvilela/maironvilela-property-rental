@@ -21,7 +21,19 @@ export class CreateProperties1636224710635 implements MigrationInterface {
           },
 
           {
-            name: 'price',
+            name: 'about_the_property',
+            type: 'text',
+            isNullable: true,
+          },
+
+
+          {
+            name: 'rental_price',
+            type: 'double',
+            isNullable: false,
+          },
+          {
+            name: 'sale_price',
             type: 'double',
             isNullable: false,
           },

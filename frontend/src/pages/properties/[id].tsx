@@ -2,12 +2,11 @@ import { Flex, Text, Box } from '@chakra-ui/react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 
-import { Footer } from '../../components/Footer';
-import { Header } from '../../components/Header';
 import { Slide } from '../../components/Slide';
 import { Summary } from '../../components/Summary';
 import api from '../../services/api';
 import { Property } from '../../types';
+import { formatRealCurrency } from '../../util/formattedValues';
 
 type Images = {
   id: string;
@@ -41,16 +40,6 @@ export default function Id({
 }: IdProps) {
   const { isFallback } = useRouter();
 
-  const propertyAbout = `Excelente apartamento, 98,99m²  claro e arejado, em ponto nobre do Bairro Silveira.
-
-  Oportunidade!!
-
-  Excelente localização próximo a todo tipo de comércio, linhas de ônibus e a 2 quarteirões do Colégio Magnum.
-
-  Apartamento amplo, claro e arejado sendo:
-
-  Sala 02 ambientes com piso em porcelanato,`;
-
   return (
     <>
       {isFallback ? (
@@ -58,8 +47,14 @@ export default function Id({
       ) : (
         <Flex align="center" flexDirection="column" w="100vw" justify="center">
           <Flex as="section" w="100vw" direction="column" align="center">
-            <Text mt="2rem" fontSize="2.4rem" fontWeight="bold">
-              Titulo do Anúncio
+            <Text
+              mt="2rem"
+              fontSize="2.4rem"
+              fontWeight="bold"
+              px="15rem"
+              align="center"
+            >
+              {property.description}
             </Text>
 
             <Box mt="5rem" w="70vw">
@@ -67,11 +62,11 @@ export default function Id({
             </Box>
 
             <Summary
+              mt="5rem"
               title={summaryAmountDetails.title}
               keyValue={summaryAmountDetails.summary}
               size={'70vw'}
               bg={'white'}
-              mt={'5rem'}
             />
 
             <Summary
@@ -79,7 +74,6 @@ export default function Id({
               keyValue={summaryPropertyDetails.summary}
               size={'70vw'}
               bg={'white'}
-              mt={'5rem'}
             />
 
             <Summary
@@ -87,12 +81,11 @@ export default function Id({
               keyValue={summaryAddress.summary}
               size={'70vw'}
               bg={'white'}
-              mt={'5rem'}
             />
 
             <Summary
               title="Mais sobre este imóvel"
-              propertyAbout={propertyAbout}
+              propertyAbout={property.aboutTheProperty}
               size={'70vw'}
             />
           </Flex>
@@ -129,9 +122,33 @@ export const getStaticProps: GetStaticProps = async ctx => {
 
   const { data } = await api.get(`/properties/${id}`);
 
-  const property = data.property;
+  const property: Property = data.property;
 
-  console.log(property.propertyImages);
+  console.log(data.property.specifications);
+
+  const allowPets = property.specifications.find(
+    specification => specification.name === 'allows pets'
+  );
+
+  // retorna a quantidade de banheiros do imóvel
+  const numberOfBathrooms = property.specifications.find(
+    specification => specification.name.toLowerCase() === 'number of bathrooms'
+  );
+
+  // retorna a quantidade de quartos do imóvel
+  const numberOfRooms = property.specifications.find(
+    specification => specification.name.toLowerCase() === 'number of rooms'
+  );
+
+  // retorna o tamanho do imóvel
+  const areaSize = property.specifications.find(
+    specification => specification.name.toLowerCase() === 'area'
+  );
+
+  const numberOfParkingSpaces = property.specifications.find(
+    specification =>
+      specification.name.toLowerCase() === 'number of parkingspaces'
+  );
 
   const images = property.propertyImages.map(image => {
     return {
@@ -140,11 +157,42 @@ export const getStaticProps: GetStaticProps = async ctx => {
     };
   });
 
+  const summaryPropertyDetails = {
+    title: 'Detalhes do Imóvel',
+    summary: [
+      {
+        key: 'Código: ',
+        value: property.id
+      },
+
+      {
+        key: 'Área: ',
+        value: areaSize ? `${areaSize.description}m2` : '-'
+      },
+      {
+        key: 'Quartos: ',
+        value: numberOfRooms ? numberOfRooms.description : '-'
+      },
+      {
+        key: 'Vagas: ',
+        value: numberOfParkingSpaces ? numberOfParkingSpaces.description : '-'
+      },
+      {
+        key: 'Banheiros: ',
+        value: numberOfBathrooms ? numberOfBathrooms.description : '-'
+      },
+      {
+        key: 'Aceita Pets: ',
+        value: allowPets ? allowPets.description : '-'
+      }
+    ]
+  };
+
   const summaryAddress = {
     title: 'Localização ',
     summary: [
       {
-        key: 'Endereço',
+        key: 'Endereço:',
         value: `
           ${property.address.streetAddress},
           ${property.address.number} -
@@ -152,47 +200,16 @@ export const getStaticProps: GetStaticProps = async ctx => {
         `
       },
       {
-        key: 'Bairro',
+        key: 'Bairro:',
         value: property.address.district
       },
       {
-        key: 'Cidade',
+        key: 'Cidade:',
         value: property.address.city
       },
       {
-        key: 'Estado',
+        key: 'Estado:',
         value: property.address.state
-      }
-    ]
-  };
-
-  const summaryPropertyDetails = {
-    title: 'Detalhes do Imóvel',
-    summary: [
-      {
-        key: 'Código: ',
-        value: '2366525'
-      },
-
-      {
-        key: 'Área: ',
-        value: '600m2'
-      },
-      {
-        key: 'Quartos: ',
-        value: '5'
-      },
-      {
-        key: 'Vagas: ',
-        value: '2'
-      },
-      {
-        key: 'Banheiros: ',
-        value: '2'
-      },
-      {
-        key: 'Aceita Pets: ',
-        value: 'Sim'
       }
     ]
   };
@@ -202,12 +219,12 @@ export const getStaticProps: GetStaticProps = async ctx => {
     summary: [
       {
         key: 'Valor Aluguel: ',
-        value: 'R$1.600,00'
+        value: formatRealCurrency(property.rentalPrice)
       },
 
       {
         key: 'Valor Venda: ',
-        value: 'R$2.600.000,00'
+        value: formatRealCurrency(property.salePrice)
       },
       {
         key: 'Contrato (Aluguel): ',

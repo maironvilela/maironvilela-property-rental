@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { Flex, Spinner, Text, Images } from '@chakra-ui/react';
+import { Flex, Spinner, Text } from '@chakra-ui/react';
 import { GetStaticProps } from 'next';
 
 import { Banner } from '../components/Banner';

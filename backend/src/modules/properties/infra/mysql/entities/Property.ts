@@ -22,8 +22,15 @@ export class Property {
   propertyType: string;
 
 
-  @Column()
-  price: number;
+  @Column({ name: 'about_the_property' })
+  aboutTheProperty: string;
+
+
+  @Column({ name: 'sale_price' })
+  salePrice: number;
+
+  @Column({ name: 'rental_price' })
+  rentalPrice: number;
 
 
   @OneToMany(() => PropertyImages, propertyImages => propertyImages.property, { cascade: true })
@@ -35,7 +42,6 @@ export class Property {
   address: Address;
 
   @OneToMany(() => Specifications, specifications => specifications.property, { cascade: true })
-  @JoinColumn({ name: 'address_id' })
   specifications: Specifications[];
 
 

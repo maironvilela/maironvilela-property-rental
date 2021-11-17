@@ -10,11 +10,13 @@ export class CreatePropertyDTO {
 
   description: string;
   propertyType: string;
-  price: number;
+  salePrice: number;
+  rentalPrice: number;
   isLocation: boolean;
   isSale: boolean;
   specifications: Specifications[];
   address: Address;
   propertyImages: PropertyImages[];
+  aboutTheProperty: string
 
 }

@@ -26,7 +26,8 @@ propertiesRoutes.get('/:id', findPropertyByIdController.handle);
 
 propertiesRoutes.post('/', [
   body('description').notEmpty(),
-  body('price').notEmpty(),
+  body('rentalPrice').notEmpty(),
+  body('salePrice').notEmpty(),
   body('isSale').notEmpty(),
   body('isLocation').notEmpty(),
 ], createPropertiesController.handle);

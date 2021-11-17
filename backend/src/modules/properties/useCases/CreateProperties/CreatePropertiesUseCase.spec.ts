@@ -82,14 +82,19 @@ export const getPropertyInTest = () => {
 
   address.zipCode = faker.address.zipCode();
   address.streetAddress = faker.address.streetName();
-  address.number = property.price = faker.datatype.number();
+  address.number = faker.datatype.number();
+
   address.complement = faker.address.secondaryAddress();
   address.district = faker.address.county();
   address.city = faker.address.city();
   address.state = faker.address.state();
 
   property.description = faker.lorem.sentence().substring(1, 100);
-  property.price = faker.datatype.number();
+  property.salePrice = faker.datatype.number();
+  property.rentalPrice = faker.datatype.number();
+  property.aboutTheProperty = faker.lorem.sentence().substring(1, 600);
+
+
   property.isSale = faker.datatype.boolean();
   property.isLocation = faker.datatype.boolean();
   property.specifications = specifications;

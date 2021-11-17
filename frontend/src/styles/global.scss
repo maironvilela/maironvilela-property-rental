@@ -15,7 +15,7 @@ html {
   body {
     background:(--white);
     color: var(--gray-900);
-   }
+  }
 
 body, input, textarea, select, button {
   font-weight: 400;
@@ -27,8 +27,4 @@ button {
   cursor: pointer;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
 }

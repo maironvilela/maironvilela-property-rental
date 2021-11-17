@@ -31,23 +31,27 @@ export class CreatePropertiesController {
     const {
       propertyImages,
       description,
-      price,
-      isLocation,
-      isSale,
-      specifications,
-      propertyType,
-      address } = request.body;
-
-
-    const property = {
-      description,
-      price,
+      salePrice,
+      rentalPrice,
       isLocation,
       isSale,
       specifications,
       propertyType,
       address,
-      propertyImages
+      aboutTheProperty } = request.body;
+
+
+    const property = {
+      description,
+      salePrice,
+      rentalPrice,
+      isLocation,
+      isSale,
+      specifications,
+      propertyType,
+      address,
+      propertyImages,
+      aboutTheProperty
     };
 
 

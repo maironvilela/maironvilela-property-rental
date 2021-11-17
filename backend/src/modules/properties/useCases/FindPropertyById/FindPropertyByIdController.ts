@@ -15,7 +15,7 @@ export class FindPropertyByIdController {
      * @description Função chamada pela rota para receber as chamadas a API. Recebe como query params, o id do imóvel que deseja pesquisar
      * @param request request (express) da requisição
      * @param response response (express) da requisição
-     * @returns retorna um emóvel caso o mesmo seja encontrado
+     * @returns retorna um imóvel caso o mesmo seja encontrado
      * @Example propertiesRoutes.get('/:id', FindPropertyByIdController.handle);
    */
   async handle(request: Request, response: Response): Promise<Response<Property>> {

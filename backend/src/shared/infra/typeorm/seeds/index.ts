@@ -23,12 +23,33 @@ export const getPropertyInTest = async (i: number) => {
 
   const propertyImages: PropertyImages[] = [];
 
-  for (let i = 0; i < 5; i++) {
 
-    specifications.push({
-      name: faker.lorem.word(),
-      description: faker.lorem.paragraph()
-    });
+  specifications.push({
+    name: 'number of rooms',
+    description: String(Math.floor(Math.random() * (10 - 1) + 1))
+  });
+
+  specifications.push({
+    name: 'number of bathrooms',
+    description: String(Math.floor(Math.random() * (3 - 1) + 1))
+  });
+  specifications.push({
+    name: 'number of parkingSpaces',
+    description: String(Math.floor(Math.random() * (8 - 1) + 1))
+  });
+
+  specifications.push({
+    name: 'area',
+    description: String(Math.floor(Math.random() * (600 - 50) + 50))
+  });
+  specifications.push({
+    name: 'allows pets',
+    description: faker.datatype.boolean() ? 'SIM' : 'NÃO'
+  });
+
+
+  // imagens
+  for (let i = 0; i < 5; i++) {
 
     propertyImages.push({
       imageUrl: `http://placeimg.com/1024/${Math.floor(Math.random() * (700 - 500) + 500)}/nature`,
@@ -39,14 +60,17 @@ export const getPropertyInTest = async (i: number) => {
 
   address.zipCode = faker.address.zipCode();
   address.streetAddress = faker.address.streetName();
-  address.number = property.price = faker.datatype.number();
+  address.number = faker.datatype.number();
   address.complement = faker.address.secondaryAddress();
   address.district = faker.address.county();
   address.city = faker.address.city();
   address.state = faker.address.state();
 
   property.description = faker.lorem.sentence().substring(1, 100);
-  property.price = faker.datatype.number();
+  property.aboutTheProperty = faker.lorem.sentence().substring(1, 100);
+  property.rentalPrice = faker.datatype.number();
+  property.salePrice = faker.datatype.number();
+  property.rentalPrice = faker.datatype.number();
   property.isSale = faker.datatype.boolean();
   property.isLocation = faker.datatype.boolean();
   property.specifications = specifications;
@@ -79,7 +103,7 @@ export const getPropertyInTest = async (i: number) => {
 
   await connection.runMigrations().then(async () => {
 
-    for (let i = 1; i <= 600; i++) {
+    for (let i = 1; i <= 30; i++) {
       const property = await getPropertyInTest(i);
       await savePropertyQueue.add({ property });
     }

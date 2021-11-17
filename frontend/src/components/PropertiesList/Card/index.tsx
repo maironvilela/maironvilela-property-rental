@@ -4,6 +4,7 @@ import { Box, Flex, Text, Image } from '@chakra-ui/react';
 import Link from 'next/link';
 
 import { Property } from '../../../types';
+import { getSpecification } from '../../../util/getSpecification';
 import { DetailsProperty } from '../../DetailsProperty';
 
 interface CardProps {
@@ -15,6 +16,40 @@ export const Card = ({ property }: CardProps) => {
     const mainImage = property.propertyImages.find(image => image.isMainImage);
 
     return mainImage.imageUrl;
+  }, []);
+
+  // retorna a quantidade de banheiros do imóvel
+  const numberOfBathrooms = useMemo(() => {
+    return getSpecification(property.specifications, 'number of bathrooms');
+  }, []);
+
+  // retorna a quantidade de quartos do imóvel
+  const numberOfRooms = useMemo(() => {
+    return getSpecification(property.specifications, 'number of rooms');
+  }, []);
+
+  // retorna o tamanho do imóvel
+  const areaSize = useMemo(() => {
+    return getSpecification(property.specifications, 'area');
+  }, []);
+
+  const rentalPrice = useMemo(() => {
+    return property.rentalPrice.toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    });
+  }, []);
+
+  const salePrice = useMemo(() => {
+    return property.salePrice.toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    });
+  }, []);
+
+  // retorna a quantidade de vagas de garagem do imóvel
+  const numberOfParkingSpaces = useMemo(() => {
+    return getSpecification(property.specifications, 'number of parkingspaces');
   }, []);
 
   return (
@@ -46,11 +81,12 @@ export const Card = ({ property }: CardProps) => {
           </Box>
 
           <Box mt="1rem">
-            <DetailsProperty label={'Valor Locação:'} value={'R$1.200,00'} />
-            <DetailsProperty label={'Valor Locação:'} value={'R$2.6000,00'} />
-            <DetailsProperty label={'size: '} value={'100m2'} />
-            <DetailsProperty label={'Quartos: '} value={'2'} />
-            <DetailsProperty label={'Vagas:'} value={'3'} />
+            <DetailsProperty label={'Valor Locação:'} value={rentalPrice} />
+            <DetailsProperty label={'Valor Venda:'} value={salePrice} />
+            <DetailsProperty label={'size: '} value={`${areaSize} m2`} />
+            <DetailsProperty label={'Quartos: '} value={numberOfRooms} />
+            <DetailsProperty label={'Banheiros: '} value={numberOfBathrooms} />
+            <DetailsProperty label={'Vagas:'} value={numberOfParkingSpaces} />
           </Box>
         </Box>
 

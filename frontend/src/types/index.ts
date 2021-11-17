@@ -9,20 +9,28 @@ type Address = {
   state: string;
 };
 
-type PropertyImages = {
+export type PropertyImages = {
   id: number;
   imageUrl: string;
   isMainImage: boolean;
+};
+
+export type Specification = {
+  name: string;
+  description: string;
 };
 
 export type Property = {
   id: number;
   description: string;
   propertyType: string;
-  price: number;
+  salePrice: number;
+  rentalPrice: number;
   isLocation: boolean;
   isSale: boolean;
   address: Address;
   propertyImages: PropertyImages[];
   isMainImage: string;
+  specifications: Specification[];
+  aboutTheProperty: string;
 };

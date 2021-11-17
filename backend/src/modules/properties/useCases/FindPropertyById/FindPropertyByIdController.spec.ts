@@ -39,9 +39,11 @@ describe('List Properties Controller', () => {
     for (let i = 1; i <= 20; i++) {
 
       await connection.query(`
-      INSERT INTO properties(description, price, is_sale, is_location, property_type, address_id)
+      INSERT INTO properties(description,about_the_property, rental_price, sale_price, is_sale, is_location, property_type, address_id)
       VALUES(
       '${faker.lorem.sentence()}',
+      '${faker.lorem.sentence()}',
+      ${faker.finance.amount()},
       ${faker.finance.amount()},
       ${faker.datatype.boolean()},
       ${faker.datatype.boolean()},
@@ -100,12 +102,19 @@ describe('List Properties Controller', () => {
 
     const responseGetProperty = await request(app).get(`/api/properties/${id}`);
 
+    console.log(responseGetProperty.body);
+
 
     // Válida o status da requisição
     expect(responseGetProperty.status).toEqual(200);
 
     expect(responseGetProperty.body.property).toHaveProperty('propertyImages');
     expect(responseGetProperty.body.property.propertyImages.length).toEqual(10);
+
+    expect(responseGetProperty.body.property).toHaveProperty('aboutTheProperty');
+    expect(responseGetProperty.body.property.aboutTheProperty).not.toBeNull();
+
+
 
     expect(responseGetProperty.body.property).toHaveProperty('address');
     expect(responseGetProperty.body.property.address).not.toBeNull();
